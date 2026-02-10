@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --animate-heart-float: heart-float 1.2s ease-in-out forwards;
+  --animate-blink: blink 0.7s step-end infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+  }
+}
+
+.dark {
+  --color-background: #0a0a0a;
+  --color-foreground: #ededed;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
+}
+
+@keyframes heart-float {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
