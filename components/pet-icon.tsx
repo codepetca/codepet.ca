@@ -20,13 +20,13 @@ export function PetIcon() {
       className="relative cursor-pointer"
       aria-label={`Pet the ${pet.name}`}
     >
-      <FontAwesomeIcon icon={pet.icon} className="h-9 w-9" />
+      <FontAwesomeIcon icon={pet.icon} size="6x" />
       {showHeart && (
         <span
-          className="absolute -top-12 right-0 animate-heart-float"
+          className="absolute -top-14 right-0 animate-heart-float"
           onAnimationEnd={() => setShowHeart(false)}
         >
-          <FontAwesomeIcon icon={faHeart} className="h-9 w-9 text-red-500" />
+          <FontAwesomeIcon icon={faHeart} size="3x" className="text-red-500" />
         </span>
       )}
     </button>

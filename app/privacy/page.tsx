@@ -1,111 +1,140 @@
 export default function PrivacyPage() {
   return (
-    <article className="max-w-2xl px-4 py-8 self-start">
-      <h1 className="text-2xl font-bold mb-6">Privacy Policy</h1>
+    <article className="w-full max-w-2xl mx-auto px-6 py-8 self-start">
+      <h1 className="text-2xl font-bold mb-2">Privacy Policy</h1>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: February 2025</p>
 
       <p className="mb-4">
         Codepet (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or &ldquo;our&rdquo;)
-        operates the Codepet mobile applications (the &ldquo;Apps&rdquo;).
+        operates websites, mobile applications, web applications, and other
+        software products and services (collectively, the
+        &ldquo;Services&rdquo;).
       </p>
       <p className="mb-4">
-        This page informs you of our policies regarding the collection, use, and
-        disclosure of personal data when you use our Apps and the choices you
-        have associated with that data.
-      </p>
-      <p className="mb-4">
-        We use your data to provide and improve the Apps. By using the Apps, you
-        agree to the collection and use of information in accordance with this
-        policy.
+        This Privacy Policy explains how we collect, use, disclose, and
+        safeguard your information when you use any of our Services. By
+        accessing or using our Services, you agree to the practices described in
+        this policy.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">
-        Information Collection and Use
+        Information We Collect
       </h2>
-      <p className="mb-4">
-        We collect several different types of information for various purposes to
-        provide and improve our Apps to you.
+      <p className="mb-2">
+        We may collect the following types of information depending on which
+        Services you use:
       </p>
 
       <h3 className="text-lg font-semibold mt-4 mb-2">
-        Types of Data Collected
+        Personal Information
       </h3>
-      <h4 className="font-semibold mb-2">Personal Data</h4>
       <p className="mb-2">
-        While using our Apps, we may ask you to provide certain personally
-        identifiable information that can be used to contact or identify you
-        (&ldquo;Personal Data&rdquo;). Personally identifiable information may
-        include, but is not limited to:
+        Information that can be used to identify you, including but not limited
+        to:
       </p>
       <ul className="list-disc list-inside mb-4 space-y-1">
         <li>Name</li>
         <li>Email address</li>
-        <li>Profile information as provided by the user within the Apps</li>
+        <li>Profile information you provide within our Services</li>
+        <li>Student numbers or institutional identifiers</li>
+        <li>Payment and billing information</li>
       </ul>
 
-      <h3 className="text-lg font-semibold mt-4 mb-2">Use of Data</h3>
+      <h3 className="text-lg font-semibold mt-4 mb-2">
+        Automatically Collected Information
+      </h3>
       <p className="mb-2">
-        We may use your Personal Data for the following purposes:
+        When you use our Services, we may automatically collect:
       </p>
       <ul className="list-disc list-inside mb-4 space-y-1">
-        <li>To provide and maintain the Apps</li>
-        <li>To improve the user experience and provide tailored features</li>
-        <li>
-          To allow you to participate in interactive features of our Apps when
-          you choose to do so
-        </li>
-        <li>To provide customer support</li>
-        <li>
-          To gather analysis or valuable information so that we can improve the
-          Apps
-        </li>
-        <li>To monitor the usage of the Apps</li>
-        <li>To detect, prevent and address technical issues</li>
+        <li>Device information (type, operating system, browser)</li>
+        <li>Usage data (features accessed, interactions, session duration)</li>
+        <li>Log data (IP address, access times, pages viewed)</li>
+        <li>Cookies and similar tracking technologies</li>
       </ul>
 
-      <h2 className="text-xl font-semibold mt-6 mb-3">Firebase Integration</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-3">
+        How We Use Your Information
+      </h2>
+      <p className="mb-2">
+        We may use the information we collect for the following purposes:
+      </p>
+      <ul className="list-disc list-inside mb-4 space-y-1">
+        <li>To provide, operate, and maintain our Services</li>
+        <li>To process transactions and manage your account</li>
+        <li>To improve and personalize your experience</li>
+        <li>To communicate with you, including customer support</li>
+        <li>To send updates, notifications, or promotional materials (with your consent where required)</li>
+        <li>To monitor usage and analyze trends</li>
+        <li>To detect, prevent, and address technical issues or abuse</li>
+        <li>To comply with legal obligations</li>
+      </ul>
+
+      <h2 className="text-xl font-semibold mt-6 mb-3">
+        Payment Processing
+      </h2>
       <p className="mb-4">
-        We may use Firebase, a mobile and web application development platform
-        provided by Google, which may collect certain data as outlined in
-        Firebase&apos;s Privacy Policy. This may include (but is not limited to)
-        analytics, crash reporting, and user interactions within the Apps.
+        When you make a purchase through our Services, your payment information
+        is processed directly by our third-party payment provider and is not
+        stored on our servers. We may retain transaction records such as purchase
+        date, amount, and subscription status for account management and
+        record-keeping purposes.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-3">
+        Third-Party Service Providers
+      </h2>
+      <p className="mb-4">
+        We may use third-party service providers to help us operate and improve
+        our Services. These providers may have access to your information only
+        to perform tasks on our behalf and are obligated not to use it for other
+        purposes. These services may include, but are not limited to, hosting,
+        analytics, payment processing, authentication, and crash reporting.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Data Retention</h2>
       <p className="mb-4">
-        We do not retain or store personal data beyond what is necessary for the
-        operation of the Apps. Non-personal identifiers or data necessary for app
-        functionality may be retained for a specific period, after which it will
-        be securely deleted.
+        We retain your personal information only for as long as necessary to
+        fulfil the purposes for which it was collected, to provide our Services,
+        or as required by law. When your data is no longer needed, we will
+        securely delete or anonymize it.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-3">Database Use</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-3">Data Security</h2>
       <p className="mb-4">
-        We may utilize databases to enhance user experience and functionality
-        within our Apps. Any information stored in databases will be limited to
-        non-personal identifiers or data necessary for app functionality.
+        We take reasonable measures to protect your personal information from
+        unauthorized access, alteration, disclosure, or destruction. However, no
+        method of transmission over the Internet or electronic storage is
+        completely secure, and we cannot guarantee absolute security.
       </p>
 
-      <h2 className="text-xl font-semibold mt-6 mb-3">Security of Data</h2>
-      <p className="mb-4">
-        The security of your data is important to us. While we strive to use
-        commercially acceptable means to protect your Personal Data, we cannot
-        guarantee its absolute security.
-      </p>
-
-      <h2 className="text-xl font-semibold mt-6 mb-3">Legal Disclaimer</h2>
+      <h2 className="text-xl font-semibold mt-6 mb-3">Your Rights</h2>
       <p className="mb-2">
-        We may disclose Personal Data in good faith belief that such action is
-        necessary to:
+        Depending on your jurisdiction, you may have the right to:
+      </p>
+      <ul className="list-disc list-inside mb-4 space-y-1">
+        <li>Access the personal information we hold about you</li>
+        <li>Request correction of inaccurate information</li>
+        <li>Request deletion of your personal information</li>
+        <li>Withdraw consent for data processing where applicable</li>
+      </ul>
+      <p className="mb-4">
+        To exercise any of these rights, please contact us using the
+        information below.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-3">
+        Disclosure of Information
+      </h2>
+      <p className="mb-2">
+        We may disclose your information in good faith belief that such action
+        is necessary to:
       </p>
       <ul className="list-disc list-inside mb-4 space-y-1">
         <li>Comply with a legal obligation</li>
         <li>Protect and defend the rights or property of Codepet</li>
-        <li>
-          Prevent or investigate possible wrongdoing in connection with the Apps
-        </li>
-        <li>
-          Protect the personal safety of users of the Apps or the public
-        </li>
+        <li>Prevent or investigate possible wrongdoing related to our Services</li>
+        <li>Protect the personal safety of users or the public</li>
         <li>Protect against legal liability</li>
       </ul>
 
@@ -113,15 +142,22 @@ export default function PrivacyPage() {
         Changes to This Privacy Policy
       </h2>
       <p className="mb-4">
-        We may update our Privacy Policy from time to time. You are advised to
-        review this Privacy Policy periodically for any changes. Changes to this
-        Privacy Policy are effective when they are posted on this page.
+        We may update this Privacy Policy from time to time. Changes are
+        effective when posted on this page. We encourage you to review this
+        policy periodically.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">Contact Us</h2>
       <p>
         If you have any questions about this Privacy Policy, please contact us
-        via email.
+        at{" "}
+        <a
+          href="mailto:dev.codepet@gmail.com"
+          className="text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          dev.codepet@gmail.com
+        </a>
+        .
       </p>
     </article>
   );

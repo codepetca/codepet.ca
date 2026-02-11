@@ -3,27 +3,30 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-  --animate-heart-float: heart-float 1.2s ease-in-out forwards;
+  --animate-heart-float: heart-float 1.8s ease-in-out forwards;
   --animate-blink: blink 0.7s step-end infinite;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not(.light) {
-    --color-background: #0a0a0a;
-    --color-foreground: #ededed;
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
-.dark {
-  --color-background: #0a0a0a;
-  --color-foreground: #ededed;
-}
-
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
+  background: var(--background);
+  color: var(--foreground);
   font-family: var(--font-sans, system-ui, -apple-system, sans-serif);
 }
 

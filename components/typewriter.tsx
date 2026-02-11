@@ -13,7 +13,7 @@ function useTypewriter() {
   const pet = getCurrentPet();
 
   const phases: TypewriterPhase[] = [
-    { text: "Play!", isBlue: false, erase: true },
+    { text: "Play", isBlue: false, erase: true },
     { text: "Code", isBlue: false, erase: true },
     { text: `Pet the ${pet.name}`, isBlue: true, erase: false },
   ];
@@ -34,20 +34,16 @@ function useTypewriter() {
         setDisplayText(currentPhase.text.slice(0, displayText.length + 1));
         setIsBlue(currentPhase.isBlue);
       } else {
-        // Done typing this phase
         if (!currentPhase.erase) {
           setDone(true);
           return;
         }
-        // Pause then start erasing
         setTimeout(() => setIsTyping(false), 1000);
       }
     } else {
-      // Erasing
       if (displayText.length > 0) {
         setDisplayText(displayText.slice(0, -1));
       } else {
-        // Done erasing, move to next phase
         setTimeout(() => {
           setPhaseIndex((i) => i + 1);
           setIsTyping(true);
@@ -67,15 +63,15 @@ function useTypewriter() {
 }
 
 export function Typewriter() {
-  const { displayText, isBlue } = useTypewriter();
+  const { displayText, isBlue, done } = useTypewriter();
 
   return (
     <span
-      className={`text-2xl ${isBlue ? "text-blue-600" : ""}`}
+      className={`text-2xl ${isBlue ? "text-blue-600 dark:text-blue-400" : ""}`}
       aria-live="polite"
     >
       {displayText}
-      <span className="animate-blink">|</span>
+      {!done ? <span className="animate-blink">|</span> : null}
     </span>
   );
 }
