@@ -8,4 +8,4 @@ script = ""
 [[actions]]
 name = "Run"
 icon = "run"
-command = "cd /Users/stew/Repos/codepet.ca && pids=$(lsof -ti tcp:3025 2>/dev/null || true); if [ -n \"$pids\" ]; then kill -9 $pids 2>/dev/null || true; fi && npm install && (i=0; while [ $i -lt 60 ]; do if curl -fsS http://127.0.0.1:3025 >/dev/null 2>&1; then open http://127.0.0.1:3025 >/dev/null 2>&1 || true; break; fi; i=$((i+1)); sleep 1; done) & npm run dev -- --webpack --hostname 127.0.0.1 --port 3025"
+command = "repo_root=$(git rev-parse --show-toplevel 2>/dev/null || pwd); cd \"$repo_root\" && bash scripts/run-action.sh"
