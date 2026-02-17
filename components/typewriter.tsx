@@ -50,7 +50,7 @@ function useTypewriter() {
         }, 500);
       }
     }
-  }, [displayText, isTyping, currentPhase, done, phaseIndex]);
+  }, [displayText, isTyping, currentPhase, done]);
 
   useEffect(() => {
     if (done) return;

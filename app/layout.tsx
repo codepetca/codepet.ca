@@ -18,6 +18,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "CodePet",
   description: "A playful learning companion",
+  icons: {
+    icon: [
+      { url: "/paw-light.svg", media: "(prefers-color-scheme: light)" },
+      { url: "/paw-dark.svg", media: "(prefers-color-scheme: dark)" },
+    ],
+    shortcut: "/paw-light.svg",
+    apple: "/paw-light.svg",
+  },
 };
 
 export default function RootLayout({
