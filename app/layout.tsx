@@ -23,7 +23,6 @@ export const metadata: Metadata = {
       { url: "/paw-light.svg", media: "(prefers-color-scheme: light)" },
       { url: "/paw-dark.svg", media: "(prefers-color-scheme: dark)" },
     ],
-    shortcut: "/paw-light.svg",
     apple: "/paw-light.svg",
   },
 };
