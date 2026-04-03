@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { getCurrentPet } from "@/lib/pets";
+import { type Pet } from "@/lib/pets";
 
 interface TypewriterPhase {
   text: string;
@@ -9,9 +9,7 @@ interface TypewriterPhase {
   erase: boolean;
 }
 
-function useTypewriter() {
-  const pet = getCurrentPet();
-
+function useTypewriter(pet: Pet) {
   const phases: TypewriterPhase[] = [
     { text: "Play", isBlue: false, erase: true },
     { text: "Code", isBlue: false, erase: true },
@@ -62,8 +60,12 @@ function useTypewriter() {
   return { displayText, isBlue, done };
 }
 
-export function Typewriter() {
-  const { displayText, isBlue, done } = useTypewriter();
+interface TypewriterProps {
+  pet: Pet;
+}
+
+export function Typewriter({ pet }: TypewriterProps) {
+  const { displayText, isBlue, done } = useTypewriter(pet);
 
   return (
     <span
