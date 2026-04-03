@@ -34,7 +34,11 @@ const pets: Pet[] = [
   { name: "fish", icon: faFish },
 ];
 
-export function getCurrentPet(): Pet {
-  const month = new Date().getMonth(); // 0-based
+export function getPetForDate(date: Date): Pet {
+  const month = date.getMonth(); // 0-based
   return pets[month];
+}
+
+export function getCurrentPet(): Pet {
+  return getPetForDate(new Date());
 }

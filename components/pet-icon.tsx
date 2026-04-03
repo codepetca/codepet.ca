@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { getCurrentPet } from "@/lib/pets";
+import { type Pet } from "@/lib/pets";
 
-export function PetIcon() {
+interface PetIconProps {
+  pet: Pet;
+}
+
+export function PetIcon({ pet }: PetIconProps) {
   const [showHeart, setShowHeart] = useState(false);
-  const pet = getCurrentPet();
 
   function handleClick() {
     if (showHeart) return;
