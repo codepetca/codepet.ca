@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUpRightFromSquare,
@@ -7,6 +8,7 @@ import {
   faRocket,
   type IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
+import { DashTitlePet } from "@/components/dash-title-pet";
 
 interface Project {
   name: string;
@@ -46,15 +48,18 @@ const projects: Project[] = [
 
 export default function DashPage() {
   return (
-    <section className="flex min-h-[calc(100vh-8rem)] w-full max-w-5xl flex-col px-4 py-8 sm:px-6">
+    <section className="animate-page-fade-in flex min-h-[calc(100vh-8rem)] w-full max-w-5xl flex-col px-4 py-8 sm:px-6">
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-8">
         <div className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">
+          <h1 className="mt-3 inline-flex items-center gap-2 text-3xl font-semibold text-gray-950 dark:text-white sm:text-4xl">
             Codepet experiments
-          </p>
-          <h1 className="mt-3 text-3xl font-semibold text-gray-950 dark:text-white sm:text-4xl">
-            Creating fun learning experiences together
+            <Suspense fallback={null}>
+              <DashTitlePet />
+            </Suspense>
           </h1>
+          <p className="mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
+            Building fun stuff together.
+          </p>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">

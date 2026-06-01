@@ -34,6 +34,11 @@ const pets: Pet[] = [
   { name: "fish", icon: faFish },
 ];
 
+export function getPetByName(name?: string | null): Pet | undefined {
+  if (!name) return undefined;
+  return pets.find((pet) => pet.name === name);
+}
+
 export function getPetForDate(date: Date): Pet {
   const month = date.getMonth(); // 0-based
   return pets[month];
