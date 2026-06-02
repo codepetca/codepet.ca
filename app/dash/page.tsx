@@ -51,12 +51,16 @@ export default function DashPage() {
     <section className="animate-page-fade-in flex min-h-[calc(100vh-8rem)] w-full max-w-5xl flex-col px-4 py-8 sm:px-6">
       <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-8">
         <div className="text-center">
-          <h1 className="mt-3 inline-flex items-center gap-2 text-3xl font-semibold text-gray-950 dark:text-white sm:text-4xl">
-            Codepet experiments
-            <Suspense fallback={null}>
-              <DashTitlePet />
-            </Suspense>
-          </h1>
+          <div className="relative inline-block">
+            <h1 className="text-3xl font-semibold text-gray-950 dark:text-white sm:text-4xl">
+              Codepet
+            </h1>
+            <span className="absolute left-full top-1/2 ml-3 -translate-y-1/2 text-3xl text-gray-950 dark:text-white sm:text-4xl">
+              <Suspense fallback={null}>
+                <DashTitlePet />
+              </Suspense>
+            </span>
+          </div>
           <p className="mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
             Building fun stuff together.
           </p>
