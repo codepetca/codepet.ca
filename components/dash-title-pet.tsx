@@ -1,12 +1,18 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSearchParams } from "next/navigation";
-import { getPetByName } from "@/lib/pets";
+import { getCurrentPet, getPetByName } from "@/lib/pets";
+
+function subscribe() {
+  return () => {};
+}
 
 export function DashTitlePet() {
   const searchParams = useSearchParams();
-  const pet = getPetByName(searchParams.get("pet"));
+  const currentPet = useSyncExternalStore(subscribe, getCurrentPet, () => null);
+  const pet = getPetByName(searchParams.get("pet")) ?? currentPet;
 
   if (!pet) return null;
 
