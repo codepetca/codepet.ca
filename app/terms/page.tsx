@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terms of Use",
+  description: "Codepet terms and conditions of use.",
+};
+
 export default function TermsPage() {
   return (
     <article className="w-full max-w-2xl mx-auto px-6 py-8 self-start">

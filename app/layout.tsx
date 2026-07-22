@@ -16,8 +16,19 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CodePet",
+  metadataBase: new URL("https://codepet.ca"),
+  title: {
+    default: "CodePet",
+    template: "%s | CodePet",
+  },
   description: "A playful learning companion",
+  openGraph: {
+    title: "CodePet",
+    description: "A playful learning companion",
+    url: "https://codepet.ca",
+    siteName: "CodePet",
+    type: "website",
+  },
   icons: {
     icon: [
       { url: "/paw-light.svg", media: "(prefers-color-scheme: light)" },

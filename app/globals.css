@@ -5,8 +5,6 @@
 @theme inline {
   --animate-heart-float: heart-float 1.8s ease-in-out forwards;
   --animate-blink: blink 0.7s step-end infinite;
-  --animate-page-fade-in: page-fade-in 0.3s ease-out forwards;
-  --animate-page-fade-out: page-fade-out 0.36s ease-in forwards;
 }
 
 :root {

@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description: "Codepet privacy policy.",
+};
+
 export default function PrivacyPage() {
   return (
     <article className="w-full max-w-2xl mx-auto px-6 py-8 self-start">
