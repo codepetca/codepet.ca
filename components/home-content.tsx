@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useEffect,
   useRef,
   useState,
   useSyncExternalStore,
@@ -22,7 +23,12 @@ export function HomeContent() {
   const pet = useSyncExternalStore(subscribe, getCurrentPet, () => null);
   const petClicks = useRef(0);
   const petName = useRef<string | null>(null);
+  const transitionTimer = useRef<number | undefined>(undefined);
   const [showTransition, setShowTransition] = useState(false);
+
+  useEffect(() => {
+    return () => clearTimeout(transitionTimer.current);
+  }, []);
 
   function handlePetClick() {
     if (showTransition) return;
@@ -40,7 +46,7 @@ export function HomeContent() {
 
     const nextRoute = pet?.name ? `/dash?pet=${encodeURIComponent(pet.name)}` : "/dash";
 
-    window.setTimeout(() => {
+    transitionTimer.current = window.setTimeout(() => {
       router.push(nextRoute);
     }, TRANSITION_DURATION_MS);
   }

@@ -1,3 +1,10 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with Codepet.",
+};
+
 export default function ContactPage() {
   return (
     <div className="text-center px-6">

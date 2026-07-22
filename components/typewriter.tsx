@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { type Pet } from "@/lib/pets";
 
 interface TypewriterPhase {
@@ -23,6 +23,7 @@ function useTypewriter(pet: Pet) {
   const [done, setDone] = useState(false);
 
   const currentPhase = phases[phaseIndex];
+  const pauseTimer = useRef<number | undefined>(undefined);
 
   const tick = useCallback(() => {
     if (done) return;
@@ -36,13 +37,13 @@ function useTypewriter(pet: Pet) {
           setDone(true);
           return;
         }
-        setTimeout(() => setIsTyping(false), 1000);
+        pauseTimer.current = window.setTimeout(() => setIsTyping(false), 1000);
       }
     } else {
       if (displayText.length > 0) {
         setDisplayText(displayText.slice(0, -1));
       } else {
-        setTimeout(() => {
+        pauseTimer.current = window.setTimeout(() => {
           setPhaseIndex((i) => i + 1);
           setIsTyping(true);
         }, 500);
@@ -56,6 +57,10 @@ function useTypewriter(pet: Pet) {
     const timer = setTimeout(tick, speed);
     return () => clearTimeout(timer);
   }, [tick, done, isTyping]);
+
+  useEffect(() => {
+    return () => clearTimeout(pauseTimer.current);
+  }, []);
 
   return { displayText, isBlue, done };
 }

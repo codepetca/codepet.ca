@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -45,6 +46,11 @@ const projects: Project[] = [
     icon: faLaptopCode,
   },
 ];
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Codepet projects and experiments.",
+};
 
 export default function DashPage() {
   return (
