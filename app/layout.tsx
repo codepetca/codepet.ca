@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 // FontAwesome CSS - prevent flash of large icons
@@ -16,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codepet.ca"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "CodePet",
     template: "%s | CodePet",
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "CodePet",
     description: "A playful learning companion",
-    url: "https://codepet.ca",
+    url: SITE_URL,
     siteName: "CodePet",
     type: "website",
   },
