@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+# Least privilege: the job only needs to read the repo to build it.
+permissions:
+  contents: read
+
 # Cancel superseded runs on the same ref (e.g. rapid pushes to a PR).
 concurrency:
   group: ci-${{ github.ref }}
