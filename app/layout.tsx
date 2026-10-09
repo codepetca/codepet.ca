@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -48,7 +47,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased min-h-screen flex flex-col`}>
         <ThemeProvider>
-          <Header />
           <main className="flex-1 flex items-center justify-center p-2">
             {children}
           </main>

@@ -8,10 +8,11 @@ import { type Pet } from "@/lib/pets";
 interface PetIconProps {
   pet: Pet;
   onPet?: () => void;
+  onPetComplete?: () => void;
   disabled?: boolean;
 }
 
-export function PetIcon({ pet, onPet, disabled }: PetIconProps) {
+export function PetIcon({ pet, onPet, onPetComplete, disabled }: PetIconProps) {
   const [showHeart, setShowHeart] = useState(false);
   const [heartId, setHeartId] = useState(0);
 
@@ -33,7 +34,10 @@ export function PetIcon({ pet, onPet, disabled }: PetIconProps) {
         <span
           key={heartId}
           className="absolute -top-14 right-0 animate-heart-float"
-          onAnimationEnd={() => setShowHeart(false)}
+          onAnimationEnd={() => {
+            setShowHeart(false);
+            onPetComplete?.();
+          }}
         >
           <FontAwesomeIcon icon={faHeart} size="3x" className="text-red-500" />
         </span>
