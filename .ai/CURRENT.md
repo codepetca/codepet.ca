@@ -48,10 +48,10 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Key Files
 
-- `app/layout.tsx`: global metadata, font, theme provider, header, main shell, footer.
+- `app/layout.tsx`: global metadata, font, theme provider, main shell, footer.
 - `app/page.tsx` and `components/home-content.tsx`: home route entry point.
 - `components/typewriter.tsx`, `components/pet-icon.tsx`, `lib/pets.ts`: home interaction.
-- `components/header.tsx`, `components/footer.tsx`: site chrome.
+- `components/footer.tsx`: site chrome and dashboard navigation.
 - `app/dash/page.tsx`: experimental project dashboard.
 - `app/privacy/page.tsx`, `app/terms/page.tsx`, `app/contact/page.tsx`: policy/contact content.
 - `scripts/dev-open.sh`: opens or starts a dev server.
