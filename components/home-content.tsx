@@ -11,7 +11,7 @@ import { PetIcon } from "@/components/pet-icon";
 import { Typewriter } from "@/components/typewriter";
 import { getCurrentPet } from "@/lib/pets";
 
-const CELEBRATION_CLICK_COUNT = 3;
+const CELEBRATION_CLICK_COUNT = 2;
 const TRANSITION_DURATION_MS = 360;
 
 function subscribe() {
@@ -30,6 +30,19 @@ export function HomeContent() {
     return () => clearTimeout(transitionTimer.current);
   }, []);
 
+  function goToDashboard() {
+    if (transitionTimer.current !== undefined) return;
+
+    petClicks.current = 0;
+    setShowTransition(true);
+
+    const nextRoute = pet?.name ? `/dash?pet=${encodeURIComponent(pet.name)}` : "/dash";
+
+    transitionTimer.current = window.setTimeout(() => {
+      router.push(nextRoute);
+    }, TRANSITION_DURATION_MS);
+  }
+
   function handlePetClick() {
     if (showTransition) return;
 
@@ -41,14 +54,11 @@ export function HomeContent() {
     petClicks.current += 1;
     if (petClicks.current < CELEBRATION_CLICK_COUNT) return;
 
-    petClicks.current = 0;
-    setShowTransition(true);
+    goToDashboard();
+  }
 
-    const nextRoute = pet?.name ? `/dash?pet=${encodeURIComponent(pet.name)}` : "/dash";
-
-    transitionTimer.current = window.setTimeout(() => {
-      router.push(nextRoute);
-    }, TRANSITION_DURATION_MS);
+  function handlePetComplete() {
+    if (petClicks.current > 0) goToDashboard();
   }
 
   return (
@@ -62,7 +72,7 @@ export function HomeContent() {
       ) : null}
       {pet ? (
         <div className="relative z-10 flex flex-col items-center gap-2">
-          <PetIcon pet={pet} onPet={handlePetClick} disabled={showTransition} />
+          <PetIcon pet={pet} onPet={handlePetClick} onPetComplete={handlePetComplete} disabled={showTransition} />
           <Typewriter pet={pet} />
         </div>
       ) : null}

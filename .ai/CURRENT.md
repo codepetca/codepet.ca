@@ -5,9 +5,34 @@ Read this file at the start of every AI-assisted coding session.
 ## Current Shape
 
 - Codepet is a small public Next.js site for playful learning experiences.
-- The home route renders a pet icon and typewriter interaction.
-- Supporting public routes include `/about`, `/contact`, `/privacy`, `/terms`, and `/dash`.
-- `/dash` presents experimental Codepet projects such as `pika.codepet.ca`, `labs.codepet.ca`, and `lop.codepet.ca`.
+- The home route renders a pet icon and typewriter interaction. One pet opens
+  `/dash` after the 0.6s heart animation and 360ms page fade; a second pet starts
+  the fade immediately. Navigation preserves the pet in the query string,
+  guards duplicate transitions, and clears its timer on unmount.
+- The dashboard tagline is “Build fun stuff together”. Cards stack vertically
+  in this order: Codepet Education (mortarboard, `/education`), Pika, Labs.
+  Each whole card is a link with visible keyboard focus; Lop is removed.
+- The footer house icon opens `/dash` with a 44px hit area and accessible label.
+  Copyright is plain text. The former global paw header is removed.
+- `/education` introduces Codepet Education, an internal program of Codepet Inc.,
+  and features Zero. Keep visible copy minimal, with links and native collapsed
+  About the program / Support education disclosures. Payments remain pending;
+  the page does not claim charitable status or offer charitable tax receipts.
+- Public routes include `/about`, `/contact`, `/privacy`, `/terms`, `/dash`, and
+  `/education`; the sitemap includes the education page.
+- Next.js and eslint-config-next are pinned to 16.4.0 after dependency advisories
+  were found during this work. Compatible nanoid/source-map-js lockfile updates
+  remove remaining production advisories. Production audit: 0 vulnerabilities;
+  full audit still reports 8 development-tooling advisories (1 moderate/7 high).
+- Verification on 2026-10-09: lint/build pass. Browser checks cover footer→dash,
+  Education card→education, native disclosure open/close using click and Enter,
+  and pet navigation. Single pet measured 1100ms; second pet measured 453ms
+  before the heart-duration refinement. Light desktop dashboard and dark narrow
+  education layout were inspected. Final dark stacked cards fit a 390px viewport
+  with no horizontal overflow. No dedicated test harness exists.
+- PR/merge authorized by the owner on 2026-10-09 for the accumulated Codepet
+  changes. Funding activation, payment-provider setup, and separate Zero changes
+  remain outside this PR. Local preview: http://127.0.0.1:3220.
 
 ## Repo Facts
 

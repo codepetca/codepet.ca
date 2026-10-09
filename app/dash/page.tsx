@@ -3,9 +3,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowUpRightFromSquare,
   faFlask,
-  faLaptopCode,
+  faGraduationCap,
   faRocket,
   type IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
@@ -15,12 +14,19 @@ interface Project {
   name: string;
   domain: string;
   href: string;
-  status: "Beta" | "Experimental";
+  status?: "Beta" | "Experimental";
   description: string;
   icon: IconDefinition;
 }
 
 const projects: Project[] = [
+  {
+    name: "Codepet Education",
+    domain: "codepet.ca/education",
+    href: "/education",
+    description: "Free tools and resources for students and educators.",
+    icon: faGraduationCap,
+  },
   {
     name: "Pika",
     domain: "pika.codepet.ca",
@@ -37,14 +43,6 @@ const projects: Project[] = [
     description: "Early learning experiments and prototypes in progress.",
     icon: faFlask,
   },
-  {
-    name: "Lop",
-    domain: "lop.codepet.ca",
-    href: "https://lop.codepet.ca",
-    status: "Experimental",
-    description: "A polling app with useful features.",
-    icon: faLaptopCode,
-  },
 ];
 
 export const metadata: Metadata = {
@@ -55,7 +53,7 @@ export const metadata: Metadata = {
 export default function DashPage() {
   return (
     <section className="animate-page-fade-in flex min-h-[calc(100vh-8rem)] w-full max-w-5xl flex-col px-4 py-8 sm:px-6">
-      <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col justify-center gap-8">
+      <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-8">
         <div className="text-center">
           <div className="relative inline-block">
             <h1 className="text-3xl font-semibold text-gray-950 dark:text-white sm:text-4xl">
@@ -68,45 +66,38 @@ export default function DashPage() {
             </span>
           </div>
           <p className="mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
-            Building fun stuff together.
+            Build fun stuff together
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3">
           {projects.map((project) => (
-            <a
+            <Link
               key={project.domain}
               href={project.href}
-              className="group flex min-h-52 flex-col rounded-lg border border-gray-200 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700"
+              className="flex flex-col rounded-lg border border-gray-200 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700"
             >
-              <div className="flex items-start justify-between gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
+              <div className="flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                   <FontAwesomeIcon icon={project.icon} className="h-4 w-4" />
                 </span>
-                <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-amber-700 dark:border-amber-900/70 dark:bg-amber-950/40 dark:text-amber-300">
-                  {project.status}
-                </span>
-              </div>
-
-              <div className="mt-5 flex flex-1 flex-col">
-                <h2 className="text-lg font-semibold text-gray-950 dark:text-white">
+                <h2 className="flex-1 text-lg font-semibold text-gray-950 dark:text-white">
                   {project.name}
                 </h2>
+                {project.status && <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-amber-700 dark:border-amber-900/70 dark:bg-amber-950/40 dark:text-amber-300">
+                  {project.status}
+                </span>}
+              </div>
+
+              <div className="mt-3 flex flex-col">
                 <p className="mt-1 text-xs font-medium text-gray-500 dark:text-gray-400">
                   {project.domain}
                 </p>
-                <p className="mt-4 flex-1 text-sm leading-6 text-gray-600 dark:text-gray-300">
+                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-300">
                   {project.description}
                 </p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-blue-600 group-hover:underline dark:text-blue-400">
-                  Open project
-                  <FontAwesomeIcon
-                    icon={faArrowUpRightFromSquare}
-                    className="h-3 w-3"
-                  />
-                </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

@@ -3,7 +3,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
-  --animate-heart-float: heart-float 1.8s ease-in-out forwards;
+  --animate-heart-float: heart-float 0.6s ease-in-out forwards;
   --animate-blink: blink 0.7s step-end infinite;
 }
 

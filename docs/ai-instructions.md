@@ -21,8 +21,8 @@ After that, load only the files needed for the task.
 | Task | Read next |
 |---|---|
 | Home page interaction | `app/page.tsx`, `components/home-content.tsx`, `components/typewriter.tsx`, `components/pet-icon.tsx`, `lib/pets.ts` |
-| Dashboard/projects page | `app/dash/page.tsx`, `components/footer.tsx`, `components/header.tsx` |
-| Site chrome/layout | `app/layout.tsx`, `components/header.tsx`, `components/footer.tsx`, `app/globals.css` |
+| Dashboard/projects page | `app/dash/page.tsx`, `components/footer.tsx` |
+| Site chrome/layout | `app/layout.tsx`, `components/footer.tsx`, `app/globals.css` |
 | Privacy, terms, or contact | Relevant route under `app/`, plus `.ai/CURRENT.md` product boundaries |
 | Styling/theme | `app/globals.css`, `components/theme-provider.tsx`, relevant component/page |
 | Scripts/local workflow | `package.json`, `scripts/dev-open.sh`, `scripts/run-action.sh`, `docs/dev-workflow.md` |
