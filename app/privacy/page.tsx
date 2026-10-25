@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   return (
     <article className="w-full max-w-2xl mx-auto px-6 py-8 self-start">
       <h1 className="text-2xl font-bold mb-2">Privacy Policy</h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: February 2025</p>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: October 25, 2026</p>
 
       <p className="mb-4">
         Codepet (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or &ldquo;our&rdquo;)
@@ -86,6 +86,28 @@ export default function PrivacyPage() {
         stored on our servers. We may retain transaction records such as purchase
         date, amount, and subscription status for account management and
         record-keeping purposes.
+      </p>
+
+      <h2 className="text-xl font-semibold mt-6 mb-3">
+        Codepet Education Support
+      </h2>
+      <p className="mb-4">
+        Codepet Inc. uses Stripe to process education support. Stripe collects
+        your email address and payment details; your name and organization are
+        optional. We can access the details you provide and transaction records
+        in Stripe to acknowledge support, manage recurring payments, respond to
+        requests and maintain accounting records. Our website does not receive
+        your full card number. Stripe may process information outside Canada;
+        see its <a href="https://stripe.com/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">privacy policy</a>.
+      </p>
+      <p className="mb-4">
+        The separate Zero and impact updates option is unchecked by default.
+        We record your choice and the consent wording with the transaction.
+        Updates require your opt-in, are optional, and will include a way to
+        unsubscribe. Your information is not published as supporter recognition
+        without separate permission. Contact us below to withdraw your updates
+        consent or ask about your information. Accounting records may need to be
+        retained after you unsubscribe.
       </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">

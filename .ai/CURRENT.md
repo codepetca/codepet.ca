@@ -4,6 +4,95 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
+- Stripe setup requested 2026-10-25; implemented on `codex/education-stripe-checkout`
+  over PR #10 (`4292159`), with integration PR #11:
+  https://github.com/codepetca/codepet.ca/pull/11. Canonical checkout remains
+  `/Users/stew/Repos/codepet.ca`; retire the feature worktree after merge while
+  preserving private configuration. Local checkout uses test mode. Live mode requires a
+  separate activation flag, production runtime, matching live key/portal and
+  official Codepet HTTPS origin. Owner instructed proceeding with launch without
+  a Stripe Support response; local private activation flags remain false. Check
+  the production environment/deployment for actual live availability.
+  Private `.env.local` is ignored and saved. `.env.production.local` is an
+  ignored private live-preparation file; never print or commit either file.
+  Account/API identity, active test product and portal match Codepet's dashboard.
+  Owner subsequently saved the existing live key privately. Read-only live API
+  verification confirms Codepet Inc., CA, charges/payouts enabled, and the correct
+  live product/default price/active portal. Activation false; no live Session,
+  customer, charge or subscription created during this verification.
+- Created education support test product ($10/month default) and hosted portal:
+  invoice history, payment updates, cancellation at period end; no reason,
+  coupon, plan or quantity changes. Test resources/evidence are in the private
+  HQ education record, outside Git. Also prepared a live education product and
+  portal with the same simple management features, Codepet Inc. identity and
+  return link to education. No live charge/subscription or payout change.
+- Owner's latest checkout description: “support for Zero and Codepet Inc.'s
+  other education projects. No charitable tax receipt.” Applied to the Stripe
+  test/live products and local submit text; monthly cancellation disclosure remains.
+- Actual Stripe API verifies all eight preset/custom combinations, exact CAD
+  totals, idempotent retries and409 conflicts, foreign-origin403, wrong-type415,
+  invalid/injected400 and no-store. API-only test Sessions were expired.
+  Hosted CAD20 one-time passed decline then success, names omitted/email present,
+  consentfalse propagated to PaymentIntent and verified thank-you. Test-clock
+  initial/renewal payments, failure/recovery and cancellation/no next renewal
+  passed; simulation cleaned up. Chrome3DS initially showed a blank frame;
+  a later in-app browser test completed the3DS2 challenge, authenticated and paid
+  CAD12.50 with no tax, and reached the verified thank-you page. Hosted monthly
+  CAD12.50 passed with optional
+  names and consenttrue. Test portal invoice/payment controls and period-end
+  cancellation verified; actual public email-login/receipt delivery outstanding.
+- Accounting/name source review completed Oct25 at owner's request. Preliminary
+  treatment: corporate business income; no-benefit support outside GST/HST.
+  Owner explicitly approved the working GST/HST position Oct25; no external
+  accountant sign-off or CRA ruling obtained. Existing HST registration is from the
+  July21 owner record, not newly reverified. OBR confirms Codepet Inc.; exact
+  Codepet Education name search returned no results. Recommend $60/five-year
+  operating-name registration under Codepet Inc. Owner will file later and
+  explicitly instructed us to keep using the name and proceed. No filing or
+  accountant message sent. Both education products now use Nontaxable
+  txcd_00000000; Checkout explicitly disables automatic tax. Account-wide SaaS
+  preset unchanged. No CRA ruling is represented as obtained.
+- Initial test-mode review ledger: two fresh GPT-6.1-Sol/high full-diff passes at d7ed68b over
+  4292159; no blockers. Actual API testing then found rejected legacy
+  payment_method_types. Fix batch1 removes it and excludes BNPL methods; Stripe
+  confirms card/Link. Targeted GPT-6.1-Sol/high review passed at47aff1f. Total
+  3launches/2waves/1code-fix batch; one P3 stale-doc finding accepted/corrected in
+  this receipt. Reviews completed within60minute budget; attributable elapsed/
+  tokens/effective config unknown. No supported worker shutdown API is exposed.
+  Later owner-approved copy changes are nonfunctional and checked directly.
+- Live-readiness review: complete delta47aff1f..8335ddd independently checked
+  by fresh stripe_live_security and stripe_live_behavior GPT-6.1-Sol/high agents.
+  Both scopes complete, no code blockers. Shared P3 stale-document finding
+  accepted/corrected in one documentation batch; code unchanged after review.
+  New review session:2launches/1initial wave/1docs-only fix batch; no extra
+  review wave required for status corrections. Reviewer token and effective
+  runtime telemetry unavailable. Prior test-only coverage remains reused.
+- Lint/build/15Node tests pass, including money/config/metadata/redirect/body
+  regressions. Local preview3220; code/publication tracked through PR #11.
+  Minimal Stripe-specific privacy/support terms are prepared locally. Live
+  product/portal prepared and saved support email/policy links configured.
+  Vercel production hosting verified through GitHub deployment status. Live
+  private configuration verified. Exact question
+  about own free-content/education support prepared for Stripe Support. Owner
+  chose to ask Stripe personally; do not send or request duplicate permission.
+  Owner subsequently instructed proceeding without a response. No agent
+  message sent and no program-specific Stripe approval claimed. Owner tax/name
+  decisions recorded. Vercel's live checkout POST endpoint is limited to10
+  attempts per60seconds/IP. Production-only configuration was added, with the
+  key stored sensitive and activation initially false; preview has no live key.
+  Canonical site is https://www.codepet.ca (bare domain redirects there).
+  Client handles hosting429/non-JSON errors safely. stripe_live_behavior reviewed
+  complete8335ddd..9a5418f delta at high reasoning: complete, no findings;
+  synthetic retry/409/429/abort/client tests passed. Review session now3launches,
+  1initial+1targeted wave,2fix batches (docs then hosting errors), under60minutes;
+  no further code changes. Live WAF probe with invalid requests gave10x404 then
+  429 before deployment, confirming enforcement without Stripe calls.
+  Public email portal login/duplicate-email selection and receipt delivery
+  remain coverage limitations; browser3DS completion is now verified.
+  See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
+
+## Earlier merged work (historical status)
+
 - Funding UI refinement authorized for PR/merge on 2026-10-25:
   `codex/supporter-details` adds optional name/organization and an unchecked
   Zero/impact updates option. Email is described as required at future Stripe
