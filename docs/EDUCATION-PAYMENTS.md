@@ -8,7 +8,8 @@ product with a CAD $10/month default price; the backend will use that product fo
 inline custom prices. Saved the test customer-portal configuration: invoice
 history, payment-method updates and cancellation at the end of the billing
 period; no cancellation reason, coupons, plan switching or quantity changes.
-Activated its test login link. No live product, key, payment or payout change.
+Activated its test login link. Later live preparation is described below;
+no live key, charge or payout setting has been changed.
 The owner supplied the existing test secret through ignored private configuration.
 Authenticated API verification matches the Codepet dashboard account and confirms
 the active test product and portal; no secret is stored in Git.
@@ -116,8 +117,8 @@ private live configuration and remaining hosted cases still need verification.
 The original test-only code passed independent static review; live-mode changes
 require their own proportional review before activation.
 
-Checks so far: lint/build and 13 Node tests pass (six existing campaign tests and
-seven checkout tests). Local API smoke check returns503 with no-store when
+Checks so far: lint/build and 14 Node tests pass (six existing campaign tests and
+eight checkout tests). Local API smoke check returns503 with no-store when
 unconfigured; browser verifies disabled checkout and amount-range validation.
 Two independent GPT-6.1-Sol/high full-diff reviews passed at
 `d7ed68bad089b6cce3344aa1ff1ade5a822be7f4` over `4292159`: security/consent and
@@ -145,6 +146,14 @@ Actual Stripe testing exposed an API compatibility issue: payment_method_types
 is no longer accepted. The integration now uses Dashboard-managed methods and
 excludes Klarna/Afterpay/Affirm; verified Stripe returns card and Link. A regression
 assertion protects this contract. Lint/build/13tests pass after that correction.
+
+The subsequent live-readiness delta47aff1f..8335ddd passed two independent
+GPT-6.1-Sol/high reviews (security/correctness and behavior/compatibility), with
+no code blockers. Both found the same P3 stale status documentation; corrected
+without changing reviewed code. Synthetic mode/route/thank-you checks passed.
+The 14-test suite, lint/build and local browser checks pass for live preparation.
+Additional actual Stripe test Sessions for both frequencies at CAD12.50 confirmed
+automatic_tax=false and total_tax=0; these Sessions were expired.
 
 ## Accounting and operating-name review — 2026-10-25
 

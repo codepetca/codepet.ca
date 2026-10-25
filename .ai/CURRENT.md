@@ -6,16 +6,21 @@ Read this file at the start of every AI-assisted coding session.
 
 - Stripe setup requested 2026-10-25: `codex/education-stripe-checkout` in
   `/Users/stew/.codex/worktrees/codepet.ca/education-stripe-checkout`, based on
-  PR #10 (`4292159`). Local checkout is test-only; live keys/modes fail closed.
-  Private `.env.local` is ignored and saved; never print or commit its values.
+  PR #10 (`4292159`). Local checkout uses test mode. Live mode requires a
+  separate activation flag, production runtime, matching live key/portal and
+  official Codepet HTTPS origin. Activation remains disabled.
+  Private `.env.local` is ignored and saved. `.env.production.local` is an
+  ignored private live-preparation file; never print or commit either file.
   Account/API identity, active test product and portal match Codepet's dashboard.
 - Created education support test product ($10/month default) and hosted portal:
   invoice history, payment updates, cancellation at period end; no reason,
   coupon, plan or quantity changes. Test resources/evidence are in the private
-  HQ education record, outside Git. No live product/payment/payout changes.
+  HQ education record, outside Git. Also prepared a live education product and
+  portal with the same simple management features, Codepet Inc. identity and
+  return link to education. No live charge/subscription or payout change.
 - Owner's latest checkout description: “support for Zero and Codepet Inc.'s
   other education projects. No charitable tax receipt.” Applied to the Stripe
-  test product and local submit text; monthly cancellation disclosure remains.
+  test/live products and local submit text; monthly cancellation disclosure remains.
 - Actual Stripe API verifies all eight preset/custom combinations, exact CAD
   totals, idempotent retries and409 conflicts, foreign-origin403, wrong-type415,
   invalid/injected400 and no-store. API-only test Sessions were expired.
@@ -32,9 +37,12 @@ Read this file at the start of every AI-assisted coding session.
   accountant sign-off or CRA ruling obtained. Existing HST registration is from the
   July21 owner record, not newly reverified. OBR confirms Codepet Inc.; exact
   Codepet Education name search returned no results. Recommend $60/five-year
-  operating-name registration under Codepet Inc. if retaining that identity.
-  No filing, accountant message, live tax configuration or activation performed.
-- Review ledger: two fresh GPT-6.1-Sol/high full-diff passes at d7ed68b over
+  operating-name registration under Codepet Inc. Owner will file later and
+  explicitly instructed us to keep using the name and proceed. No filing or
+  accountant message sent. Both education products now use Nontaxable
+  txcd_00000000; Checkout explicitly disables automatic tax. Account-wide SaaS
+  preset unchanged. No CRA ruling is represented as obtained.
+- Initial test-mode review ledger: two fresh GPT-6.1-Sol/high full-diff passes at d7ed68b over
   4292159; no blockers. Actual API testing then found rejected legacy
   payment_method_types. Fix batch1 removes it and excludes BNPL methods; Stripe
   confirms card/Link. Targeted GPT-6.1-Sol/high review passed at47aff1f. Total
@@ -42,11 +50,23 @@ Read this file at the start of every AI-assisted coding session.
   this receipt. Reviews completed within60minute budget; attributable elapsed/
   tokens/effective config unknown. No supported worker shutdown API is exposed.
   Later owner-approved copy changes are nonfunctional and checked directly.
-- Lint/build/13Node tests pass, including money/config/metadata/redirect/body
+- Live-readiness review: complete delta47aff1f..8335ddd independently checked
+  by fresh stripe_live_security and stripe_live_behavior GPT-6.1-Sol/high agents.
+  Both scopes complete, no code blockers. Shared P3 stale-document finding
+  accepted/corrected in one documentation batch; code unchanged after review.
+  New review session:2launches/1initial wave/1docs-only fix batch; no extra
+  review wave required for status corrections. Reviewer token and effective
+  runtime telemetry unavailable. Prior test-only coverage remains reused.
+- Lint/build/14Node tests pass, including money/config/metadata/redirect/body
   regressions. Local preview3220. No push/publication/PR for this integration.
-  Stripe inherited a SaaS tax category on the test product; accounting/tax/name,
-  policy disclosures, abuse controls and remaining tests still gate live setup.
+  Minimal Stripe-specific privacy/support terms are prepared locally. Live
+  product/portal prepared and saved support email/policy links configured.
+  Vercel production hosting verified through GitHub deployment status. Private
+  live key/configuration, deployment abuse controls and remaining hosted tests
+  still gate activation. Owner approval of tax treatment/name deferral recorded.
   See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
+
+## Earlier merged work (historical status)
 
 - Funding UI refinement authorized for PR/merge on 2026-10-25:
   `codex/supporter-details` adds optional name/organization and an unchecked
