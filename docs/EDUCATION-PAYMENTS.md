@@ -40,8 +40,9 @@ Provider-use classification still needs confirmation before launch. Stripe's
 tips/donations guidance distinguishes support for already-provided content from
 donations for a committed charitable purpose, and its restricted-business rules
 address fundraising. Account enablement is not specific approval of this program.
-Prepared the following request for Stripe Support; do not send without the
-owner's explicit messaging authorization:
+Prepared the following request for Stripe Support. The owner chose to ask Stripe
+personally on October25; no agent message was sent. Await the owner's response
+and do not send or request duplicate authorization unless they change that choice:
 
 > Codepet Inc. is a Canadian for-profit corporation. Our Codepet Education
 > program distributes our free Zero Java teaching kit and learning materials at

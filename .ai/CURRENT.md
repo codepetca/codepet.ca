@@ -68,8 +68,9 @@ Read this file at the start of every AI-assisted coding session.
   Vercel production hosting verified through GitHub deployment status. Live
   private configuration verified; provider-use classification, production abuse
   controls and remaining hosted tests still gate activation. Exact question
-  about own free-content/education support prepared for Stripe Support; not
-  sent, explicit owner messaging authorization pending. Account enablement is
+  about own free-content/education support prepared for Stripe Support. Owner
+  chose to ask Stripe personally; do not send or request duplicate permission.
+  Await their response; no agent message sent. Account enablement is
   not evidence of program-specific approval. Owner tax/name decisions recorded.
   See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
 
