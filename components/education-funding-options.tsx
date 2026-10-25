@@ -71,7 +71,7 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
       </fieldset>
 
       <fieldset disabled={submitting}>
-        <legend className="mb-2 text-xs text-gray-500 dark:text-gray-400">Amount in Canadian dollars (CAD)</legend>
+        <legend className="sr-only">Amount in Canadian dollars (CAD)</legend>
         <div className="grid grid-cols-3 gap-2">
           {amounts[frequency].map(String).map((value) => (
             <label key={value}>
@@ -89,7 +89,7 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
             <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-base text-gray-500 dark:text-gray-400">$</span>
             <input id={`${id}-custom`} type="text" inputMode="decimal" maxLength={9} disabled={submitting} value={selected[frequency]} onChange={(event) => setSelected({ ...selected, [frequency]: event.target.value })} aria-invalid={showError} aria-describedby={`${id}-currency${showError ? ` ${id}-error` : ""}`} className="min-h-12 w-full rounded-lg border border-gray-300 bg-white py-2 pr-3 pl-8 text-right text-base tabular-nums text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 dark:border-gray-700 dark:bg-gray-950 dark:text-white" />
           </div>
-          <span id={`${id}-currency`} className="col-span-2 text-sm text-gray-500 dark:text-gray-400">{frequency === "monthly" ? "CAD / month" : "CAD one-time"}</span>
+          <span id={`${id}-currency`} className="sr-only">{frequency === "monthly" ? "CAD / month" : "CAD one-time"}</span>
         </div>
         {showError && <p id={`${id}-error`} className="mt-2 text-sm text-red-700 dark:text-red-400">{exceedsLimit ? "The total including processing support must be CA$10,000 or less." : "Enter CA$1–10,000 with up to two decimal places."}</p>}
       </div>
@@ -98,7 +98,7 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
         <input type="checkbox" checked={coverFees} disabled={submitting} onChange={event => setCoverFees(event.target.checked)} aria-describedby={`${id}-fees-help`} className="mt-1 h-4 w-4 shrink-0 accent-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700" />
         <span>
           {quote ? `Add ${currency.format(quote.extraCents / 100)}${frequency === "monthly" ? " / month" : ""} to help cover processing costs.` : "Help cover processing costs."}
-          <span id={`${id}-fees-help`} className="mt-1 block text-xs text-gray-500 dark:text-gray-400">Optional estimate for Canadian cards; actual fees may vary.{frequency === "monthly" ? " Added to every monthly payment." : ""}</span>
+          <span id={`${id}-fees-help`} className="sr-only">Optional estimate for Canadian cards; actual fees may vary.{frequency === "monthly" ? " Added to every monthly payment." : ""}</span>
         </span>
       </label>
 
@@ -115,22 +115,25 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
             </div>
           ))}
         </div>}
-        <p className="text-xs text-gray-500 dark:text-gray-400">{checkoutReady ? "Email required at Stripe checkout. Name and organization optional." : "Email will be required at Stripe checkout for your receipt."}</p>
         <label className="flex min-h-11 cursor-pointer items-start gap-3 py-2 text-sm text-gray-700 dark:text-gray-200">
           <input type="checkbox" checked={updatesConsent} onChange={event => setUpdatesConsent(event.target.checked)} aria-describedby={`${id}-updates-help`} className="mt-1 h-4 w-4 shrink-0 accent-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700" />
-          <span>{UPDATES_CONSENT_TEXT}<span id={`${id}-updates-help`} className="mt-1 block text-xs text-gray-500 dark:text-gray-400">Optional. Unsubscribe anytime.</span></span>
+          <span>{UPDATES_CONSENT_TEXT}<span id={`${id}-updates-help`} className="sr-only">Optional. Unsubscribe anytime.</span></span>
         </label>
         <details className="text-xs text-gray-500 dark:text-gray-400">
-          <summary className="min-h-8 cursor-pointer py-1 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">About updates</summary>
-          <p className="pt-1 leading-5">{UPDATES_CONTACT_TEXT} You can also reply “unsubscribe” to an updates email. This choice does not affect your contribution.</p>
+          <summary className="min-h-8 cursor-pointer py-1 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">Details</summary>
+          <div className="space-y-2 pt-1 leading-5">
+            <p>Processing support is optional and estimated for Canadian cards; actual fees may vary.{frequency === "monthly" ? " It is added to every monthly payment, until canceled." : ""}</p>
+            <p>{checkoutReady ? "Email required at Stripe checkout. Name and organization optional." : "Email will be required at Stripe checkout for your receipt."}</p>
+            <p>{UPDATES_CONTACT_TEXT} You can also reply “unsubscribe” to an updates email. This choice does not affect your contribution.</p>
+          </div>
         </details>
       </fieldset>
       <button type="button" onClick={openCheckout} disabled={!checkoutReady || !valid || submitting} className="min-h-12 w-full rounded-lg bg-emerald-700 px-5 py-3 text-base font-semibold text-white hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 disabled:opacity-60">
         <span aria-live="polite">{submitting ? "Opening Stripe…" : valid ? `Contribute ${currency.format(totalCents / 100)} CAD${frequency === "monthly" ? " / month" : " one-time"}` : "Choose an amount"}</span>
       </button>
       {checkoutError && <p role="alert" className="text-sm text-red-700 dark:text-red-400">{checkoutError}</p>}
-      <p className="text-xs text-gray-500 dark:text-gray-400">{checkoutReady ? testMode ? "Test checkout with Stripe. No real money. " : "Secure checkout with Stripe. " : "Payments coming soon. Preview only. Details aren’t saved. "}<a href="/privacy" className="underline">Privacy</a>{" · "}<a href="/terms#education-support" className="underline">Support terms</a></p>
-      {checkoutReady && frequency === "monthly" && portalUrl && <p className="text-xs text-gray-500 dark:text-gray-400">Monthly until canceled. <a href={portalUrl} className="underline">Manage monthly support</a></p>}
+      <p className="text-xs text-gray-500 dark:text-gray-400">{!checkoutReady ? "Preview only · " : testMode ? "Test mode · " : ""}<a href="/privacy" className="underline">Privacy</a>{" · "}<a href="/terms#education-support" className="underline">Support terms</a></p>
+      {checkoutReady && frequency === "monthly" && portalUrl && <p className="text-xs text-gray-500 dark:text-gray-400"><a href={portalUrl} className="underline">Manage monthly support</a></p>}
     </section>
   );
 }

@@ -20,6 +20,12 @@ Read this file at the start of every AI-assisted coding session.
   Dark desktop and narrow layout inspected without overflow; requested390px
   override measured520px (browser minimum), so true390px remains unverified.
   Local test preview3221 stays running. No independent review or PR yet.
+  Owner then requested removal of secondary notes. Amount currency context and
+  checkbox help remain available to screen readers; visible fee estimate, checkout
+  email/name explanation and update contact information sit behind one Details
+  disclosure. Main amounts, checkbox labels, full-total button and utility links
+  stay visible. No payment calculation or consent metadata change. Lint/build
+  and browser checks pass after this cleanup; prior32money/helper tests reused.
 
 
 
