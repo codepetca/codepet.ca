@@ -4,7 +4,7 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
-- Fee-coverage preview (Oct25): owner requested local preview only, based on
+- Fee-coverage preview (Oct25): owner initially requested a local preview, based on
   main `b58b576` (PR #12 merged/deployed). Branch `codex/education-fee-preview`.
   New checkbox is unchecked on load; base amount stays in the amount field and
   the Contribute button shows the full total. Monthly coverage explicitly repeats
@@ -12,20 +12,26 @@ Read this file at the start of every AI-assisted coding session.
   0.7% Billing for monthly, using integer cents rounded upward. Actual fees vary.
   The optional addition is part of the contribution sent to the unchanged API;
   no separate surcharge/item/metadata field. The server still enforces its full
-  CAD1–10,000 charge range. All live settings remain unchanged. No publication
-  or deployment authorized for this preview. Verification:32Node tests, lint,
+  CAD1–10,000 charge range. Owner now authorized PR, merge and production deployment of these funding
+  changes. Provider/account settings remain unchanged. Verification:32Node tests, lint,
   build and diff checks pass. Browser verified unchecked load/reload, on/off,
   custom cents, frequency switching and full-total10k cap. Actual UI test Stripe
   Sessions matched CAD10.69monthly/CAD20.91one-time and were expired unpaid.
   Dark desktop and narrow layout inspected without overflow; requested390px
   override measured520px (browser minimum), so true390px remains unverified.
-  Local test preview3221 stays running. No independent review or PR yet.
+  Local test preview3221 stays running. Preparing a draft PR and independent
+  review before publication.
   Owner then requested removal of secondary notes. Amount currency context and
   checkbox help remain available to screen readers; visible fee estimate, checkout
   email/name explanation and update contact information sit behind one Details
   disclosure. Main amounts, checkbox labels, full-total button and utility links
   stay visible. No payment calculation or consent metadata change. Lint/build
   and browser checks pass after this cleanup; prior32money/helper tests reused.
+  The divider between checkboxes is also removed, browser-confirmed at0px.
+- Fee-coverage review session: high risk (financial totals), two fresh
+  GPT-6.1-Sol/high reviewers for money/security and compatibility/UI. Budget:
+  one initial wave, up to7launches/4fix batches/60minutes; current0launches,
+  no fix batches. Head/verdict will be recorded after the initial wave.
 
 
 
