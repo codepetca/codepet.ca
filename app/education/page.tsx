@@ -24,12 +24,8 @@ export default function EducationPage() {
       </div>
 
       <section aria-labelledby="zero-title" className="my-10">
-        <h2 id="zero-title" className="text-2xl font-semibold text-gray-950 dark:text-white">Zero <span className="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">Experimental</span></h2>
+        <h2 id="zero-title" className="text-2xl font-semibold text-gray-950 dark:text-white"><a href="https://zero.codepet.ca" className="inline-flex min-h-11 items-center hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600">Zero</a></h2>
         <p className="mt-2 text-base leading-7 text-gray-600 dark:text-gray-300">A simple kit for building Java apps.</p>
-        <div className="mt-4 flex flex-wrap gap-x-6 gap-y-4 text-sm font-medium text-blue-600 dark:text-blue-400">
-          <a href="https://zero.codepet.ca" className="hover:underline">Open Zero →</a>
-          <a href="https://github.com/codepetca/zero" className="hover:underline">Source</a>
-        </div>
       </section>
 
       <details className="border-t border-gray-200 text-sm dark:border-gray-800">

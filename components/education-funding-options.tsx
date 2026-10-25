@@ -4,18 +4,16 @@ import { useId, useState } from "react";
 
 type Frequency = "monthly" | "once";
 
-const amounts = { monthly: [5, 10, 20, 50], once: [10, 20, 50, 100] };
+const amounts = { monthly: [5, 10, 20], once: [10, 20, 50] };
 const currency = new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" });
 
 export function EducationFundingOptions() {
   const id = useId();
   const [frequency, setFrequency] = useState<Frequency>("monthly");
   const [selected, setSelected] = useState({ monthly: "10", once: "20" });
-  const [custom, setCustom] = useState({ monthly: "", once: "" });
-  const isCustom = selected[frequency] === "other";
-  const rawAmount = isCustom ? custom[frequency].trim() : selected[frequency];
+  const rawAmount = selected[frequency].trim();
   const valid = /^\d+(?:\.\d{1,2})?$/.test(rawAmount) && Number(rawAmount) >= 1;
-  const showError = isCustom && rawAmount !== "" && !valid;
+  const showError = rawAmount !== "" && !valid;
 
   const choiceClass = "flex min-h-12 cursor-pointer items-center justify-center rounded-lg border border-gray-300 px-3 py-2 text-sm font-medium text-gray-700 peer-checked:border-emerald-700 peer-checked:bg-emerald-700 peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-emerald-700 dark:border-gray-700 dark:text-gray-200";
 
@@ -35,28 +33,51 @@ export function EducationFundingOptions() {
 
       <fieldset>
         <legend className="mb-2 text-xs text-gray-500 dark:text-gray-400">Amount in Canadian dollars (CAD)</legend>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-          {[...amounts[frequency].map(String), "other"].map((value) => (
-            <label key={value} className={value === "other" ? "col-span-2 sm:col-span-3" : undefined}>
+        <div className="grid grid-cols-3 gap-2">
+          {amounts[frequency].map(String).map((value) => (
+            <label key={value}>
               <input type="radio" name={`${id}-amount`} value={value} checked={selected[frequency] === value} onChange={() => setSelected({ ...selected, [frequency]: value })} className="peer sr-only" />
-              <span className={choiceClass}>{value === "other" ? "Other amount" : `$${value}${frequency === "monthly" ? " / mo" : ""}`}</span>
+              <span className={choiceClass}>{`$${value}${frequency === "monthly" ? "/mo" : ""}`}</span>
             </label>
           ))}
         </div>
       </fieldset>
 
-      {isCustom && (
-        <div>
-          <label htmlFor={`${id}-custom`} className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">{frequency === "monthly" ? "Monthly amount (CAD)" : "One-time amount (CAD)"}</label>
-          <input id={`${id}-custom`} type="text" inputMode="decimal" maxLength={9} value={custom[frequency]} onChange={(event) => setCustom({ ...custom, [frequency]: event.target.value })} aria-invalid={showError} aria-describedby={showError ? `${id}-error` : undefined} className="min-h-12 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-base text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 dark:border-gray-700 dark:bg-gray-950 dark:text-white" />
-          {showError && <p id={`${id}-error`} className="mt-2 text-sm text-red-700 dark:text-red-400">Enter CA$1 or more, with up to two decimal places.</p>}
+      <div>
+        <label htmlFor={`${id}-custom`} className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200">Amount</label>
+        <div className="grid grid-cols-3 items-center gap-2">
+          <div className="relative min-w-0">
+            <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-base text-gray-500 dark:text-gray-400">$</span>
+            <input id={`${id}-custom`} type="text" inputMode="decimal" maxLength={9} value={selected[frequency]} onChange={(event) => setSelected({ ...selected, [frequency]: event.target.value })} aria-invalid={showError} aria-describedby={`${id}-currency${showError ? ` ${id}-error` : ""}`} className="min-h-12 w-full rounded-lg border border-gray-300 bg-white py-2 pr-3 pl-8 text-right text-base tabular-nums text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 dark:border-gray-700 dark:bg-gray-950 dark:text-white" />
+          </div>
+          <span id={`${id}-currency`} className="col-span-2 text-sm text-gray-500 dark:text-gray-400">{frequency === "monthly" ? "CAD / month" : "CAD one-time"}</span>
         </div>
-      )}
+        {showError && <p id={`${id}-error`} className="mt-2 text-sm text-red-700 dark:text-red-400">Enter CA$1 or more, with up to two decimal places.</p>}
+      </div>
 
-      <p aria-live="polite" className="text-base font-semibold text-gray-950 dark:text-white">
-        {valid ? `${currency.format(Number(rawAmount))} CAD${frequency === "monthly" ? " / month" : " one-time"}` : "Choose an amount"}
-      </p>
-      <button type="button" disabled className="min-h-12 w-full rounded-lg bg-emerald-700 px-5 py-3 text-base font-semibold text-white opacity-60">Payments coming soon</button>
+      <fieldset className="space-y-3 border-t border-gray-200 pt-4 dark:border-gray-800">
+        <legend className="sr-only">Supporter details</legend>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {[
+            { key: "name", label: "Name (optional)", maxLength: 120 },
+            { key: "organization", label: "Organization (optional)", maxLength: 160 },
+          ].map(({ key, label, maxLength }) => (
+            <div key={key}>
+              <label htmlFor={`${id}-${key}`} className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">{label}</label>
+              <input id={`${id}-${key}`} type="text" autoComplete="off" maxLength={maxLength} className="min-h-12 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-base text-gray-950 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700 dark:border-gray-700 dark:bg-gray-950 dark:text-white" />
+            </div>
+          ))}
+        </div>
+        <p className="text-xs text-gray-500 dark:text-gray-400">Email will be required at Stripe checkout for your receipt.</p>
+        <label className="flex min-h-11 cursor-pointer items-start gap-3 py-2 text-sm text-gray-700 dark:text-gray-200">
+          <input type="checkbox" defaultChecked={false} aria-describedby={`${id}-updates-help`} className="mt-1 h-4 w-4 shrink-0 accent-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700" />
+          <span>Email me occasional Zero and impact updates.<span id={`${id}-updates-help`} className="mt-1 block text-xs text-gray-500 dark:text-gray-400">Optional. Unsubscribe anytime.</span></span>
+        </label>
+      </fieldset>
+      <button type="button" disabled className="min-h-12 w-full rounded-lg bg-emerald-700 px-5 py-3 text-base font-semibold text-white opacity-60">
+        <span aria-live="polite">{valid ? `Contribute ${currency.format(Number(rawAmount))} CAD${frequency === "monthly" ? " / month" : " one-time"}` : "Choose an amount"}</span>
+      </button>
+      <p className="text-xs text-gray-500 dark:text-gray-400">Payments coming soon. Preview only. Details aren’t saved.</p>
     </section>
   );
 }

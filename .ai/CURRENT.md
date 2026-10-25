@@ -4,6 +4,25 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
+- Funding UI refinement authorized for PR/merge on 2026-10-25:
+  `codex/supporter-details` adds optional name/organization and an unchecked
+  Zero/impact updates option. Email is described as required at future Stripe
+  checkout. Preview fields are not submitted or persisted; payments stay disabled.
+- Three presets per frequency fill an always-visible editable amount. The field
+  matches one preset column, with a $ prefix and an adjacent CAD/frequency label.
+  The disabled button displays Contribute plus amount/frequency, or Choose an
+  amount for invalid input. Payments coming soon appears below it.
+- Zero's title links to its site; its Experimental badge and separate Source/Open
+  Zero links are removed. Other education and campaign behavior is preserved.
+- Verification: lint/build and whitespace checks pass. Browser checks cover
+  preset-to-field synchronization, custom edits/validation, independent amounts
+  per frequency, optional fields, keyboard consent toggle and reload defaults.
+  Field/preset widths match (191.4px in the measured view); dark narrow layouts
+  inspected without overflow. Local preview uses port 3220.
+- Funding UI review ledger: standard risk, one independent GPT-6.1-Sol reviewer
+  at medium reasoning. One initial full-diff pass; up to four fix rounds, seven
+  total launches and 60 minutes. Exact revision/verdict recorded in the PR.
+
 - Owner authorized PR and merge on 2026-10-25 for the Education support and
   campaign preview changes. Payments remain unavailable; no provider setup,
   account changes, entries, draws, charity commitments, or receipts are enabled.
@@ -13,10 +32,10 @@ Read this file at the start of every AI-assisted coding session.
 - `/education` describes an internal education program of Codepet Inc., with Zero
   links and native About/Support disclosures. The support button and #support
   navigation open the disclosure, including after manual collapse.
-- Funding choices are CAD monthly $5/10/20/50 or one-time $10/20/50/100. Defaults
-  are $10 monthly and $20 one-time. Prominent Other amount accepts $1+ with up to
-  two decimals; choices persist separately while switching frequency. Payments
-  coming soon stays disabled. All students get the same tools/materials.
+- Funding choices are CAD monthly $5/10/20 or one-time $10/20/50. Defaults
+  are $10 monthly and $20 one-time. The editable amount accepts $1+ with up to
+  two decimals; choices persist separately while switching frequency. The
+  contribution button stays disabled. All students get the same tools/materials.
 - `/education/campaign-preview` is an illustrative game-jam campaign, linked from
   Education, noindex and omitted from the sitemap. The sample deadline is
   Nov 7, 2026 at 23:59 America/Toronto. Progress starts at 72%, supports 0–175%,
@@ -34,10 +53,9 @@ Read this file at the start of every AI-assisted coding session.
   100/125/150% milestones, 175% semantics, once-per-run celebrations, ended state,
   reset, and reduced motion. Dark desktop/narrow layouts had no overflow; the
   campaign narrow override measured 520px rather than the requested 390px.
-- Review ledger (2026-10-25): standard risk; one independent GPT-6.1-Sol reviewer
-  at medium reasoning for the full diff and immediate callers. Budget: at most
-  seven launches, four fix rounds, 60 minutes. Final revision/verdict recorded
-  in the PR. No separate Zero repository changes belong in this PR.
+- Education/campaign preview shipped in PR #9 at `1e46270`. Its independent
+  review was clean and local/CI checks passed. No separate Zero repository
+  changes belong in the funding UI PR.
 
 ## Repo Facts
 
