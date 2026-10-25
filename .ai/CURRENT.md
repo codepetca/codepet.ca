@@ -19,8 +19,8 @@ Read this file at the start of every AI-assisted coding session.
   Sessions matched CAD10.69monthly/CAD20.91one-time and were expired unpaid.
   Dark desktop and narrow layout inspected without overflow; requested390px
   override measured520px (browser minimum), so true390px remains unverified.
-  Local test preview3221 stays running. Preparing a draft PR and independent
-  review before publication.
+  Local test preview3221 stays running. Publication tracked in PR #13:
+  https://github.com/codepetca/codepet.ca/pull/13.
   Owner then requested removal of secondary notes. Amount currency context and
   checkbox help remain available to screen readers; visible fee estimate, checkout
   email/name explanation and update contact information sit behind one Details
@@ -28,10 +28,19 @@ Read this file at the start of every AI-assisted coding session.
   stay visible. No payment calculation or consent metadata change. Lint/build
   and browser checks pass after this cleanup; prior32money/helper tests reused.
   The divider between checkboxes is also removed, browser-confirmed at0px.
-- Fee-coverage review session: high risk (financial totals), two fresh
-  GPT-6.1-Sol/high reviewers for money/security and compatibility/UI. Budget:
-  one initial wave, up to7launches/4fix batches/60minutes; current0launches,
-  no fix batches. Head/verdict will be recorded after the initial wave.
+- Fee-coverage review complete at `0784018` over `b58b576`: high risk
+  (financial totals), two fresh GPT-6.1-Sol/high reviewers. Money/security scope
+  complete with0findings, including independent BigInt checks of1,999,802 legal
+  amount/frequency pairs and full-charge serialization. Compatibility/UI scope
+  complete with0code findings; offline state/consent/payload/retry tests passed.
+  One accepted P3 documentation label corrected (About updates → Details).
+  Ledger:2launches,1initial wave,1docs-only fix batch,0code fixes; approximately
+  21:45–21:47UTC Oct25, within60minutes. No further review wave adds coverage
+  because reviewed code is unchanged. Exact worker elapsed/tokens/effective
+  configuration unknown; no supported worker shutdown control exposed.
+  Reused32tests/lint/build and browser/provider evidence. True390px layout and
+  assistive-technology interaction remain unverified. CI passed at reviewed head;
+  final documentation receipt will get its own CI before merge.
 
 
 
