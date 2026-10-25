@@ -22,6 +22,10 @@ Created the live education product and a live portal configuration/login link
 with invoice history, payment-method updates and period-end cancellation; no
 reason questionnaire, coupons, plan or quantity switching. The portal identifies
 Codepet Education and Codepet Inc. No live charge or subscription was created.
+Stripe's public settings now link to the site's privacy, terms and contact pages
+and use the saved Codepet business support email. Successful-payment/refund
+receipt emails are enabled for future transactions; actual delivery is untested.
+No receipt or updates email was manually sent.
 
 ## Local integration
 
