@@ -36,13 +36,15 @@ The activation flag remains false. No live Checkout Session, customer, charge or
 subscription was created for this verification; no secret was printed or retained
 in documentation.
 
-Provider-use classification still needs confirmation before launch. Stripe's
+Provider-use classification has not been confirmed. Stripe's
 tips/donations guidance distinguishes support for already-provided content from
 donations for a committed charitable purpose, and its restricted-business rules
 address fundraising. Account enablement is not specific approval of this program.
 Prepared the following request for Stripe Support. The owner chose to ask Stripe
-personally on October25; no agent message was sent. Await the owner's response
-and do not send or request duplicate authorization unless they change that choice:
+personally on October25; no agent message was sent. The owner subsequently
+instructed proceeding without waiting for a response. This removes that waiting
+condition, not Stripe's rules; do not represent approval as obtained or send the
+message without a new owner instruction:
 
 > Codepet Inc. is a Canadian for-profit corporation. Our Codepet Education
 > program distributes our free Zero Java teaching kit and learning materials at
@@ -74,6 +76,10 @@ References:
 - Same-origin JSON requests only, with a 4 KiB streamed body limit. Stripe SDK
   timeouts/retries are bounded. No raw Stripe errors, payment payloads or keys
   are logged or returned. Redirects are restricted to HTTPS checkout.stripe.com.
+- Vercel WAF limits POST /api/support/checkout to10attempts per60seconds perIP
+  (fixed window, normal429response). Only this new rule was staged/published;
+  no unrelated draft or bypass settings changed. Client handles429 and non-JSON
+  hosting errors with useful messages and preserves redirect validation.
 - Native Stripe optional individual/business-name fields and required email
   collect identity once at checkout. When checkout is enabled, the local name/
   organization preview inputs are replaced by a short explanation.
@@ -149,12 +155,17 @@ support GST/HST treatment and will handle operating-name filing later; no extern
 tax sign-off or filing is represented as complete. Narrow Stripe-specific
 privacy/support terms are prepared locally. Production is deployed by Vercel
 (confirmed from GitHub deployment status); deployment-specific abuse controls,
-private live configuration and remaining hosted cases still need verification.
+the live configuration has been installed production-only with activation false.
+The secret is stored as a sensitive Vercel environment variable. No live key is
+available to preview builds. The canonical production origin is
+https://www.codepet.ca because the bare domain redirects there. The owner
+instructed continuing without a provider response; classification confirmation
+is not claimed. Provider-owned3DS/email flows retain the coverage gaps below.
 The original test-only code passed independent static review; live-mode changes
 require their own proportional review before activation.
 
-Checks so far: lint/build and 14 Node tests pass (six existing campaign tests and
-eight checkout tests). Local API smoke check returns503 with no-store when
+Checks so far: lint/build and 15 Node tests pass (six existing campaign tests and
+nine checkout tests). Local API smoke check returns503 with no-store when
 unconfigured; browser verifies disabled checkout and amount-range validation.
 Two independent GPT-6.1-Sol/high full-diff reviews passed at
 `d7ed68bad089b6cce3344aa1ff1ade5a822be7f4` over `4292159`: security/consent and

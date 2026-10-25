@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { amountToCents, isStripeCheckoutUrl, UPDATES_CONSENT_TEXT } from "@/lib/education-checkout.mjs";
+import { amountToCents, checkoutResponseUrl, UPDATES_CONSENT_TEXT } from "@/lib/education-checkout.mjs";
 
 type Frequency = "monthly" | "once";
 
@@ -35,14 +35,10 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
     controller.current = abort;
     try {
       const response = await fetch("/api/support/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ ...payload, attemptId: attempt.current.id }), signal: abort.signal });
-      const result = await response.json();
+      if (response.status === 409) attempt.current = null;
+      const url = await checkoutResponseUrl(response);
       if (abort.signal.aborted) return;
-      if (!response.ok) {
-        if (response.status === 409) attempt.current = null;
-        throw new Error(typeof result.error === "string" ? result.error : "Could not open checkout. Please try again.");
-      }
-      if (!isStripeCheckoutUrl(result.url)) throw new Error("Could not open checkout. Please try again.");
-      window.location.assign(result.url);
+      window.location.assign(url);
     } catch (error) {
       if (!abort.signal.aborted) setCheckoutError(error instanceof Error ? error.message : "Could not open checkout. Please try again.");
     } finally {

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { amountToCents, checkoutConfiguration, checkoutParameters, isStripeCheckoutUrl, readCheckoutBody, validateSupportRequest, UPDATES_CONSENT_TEXT } from "../lib/education-checkout.mjs";
+import { amountToCents, checkoutConfiguration, checkoutParameters, checkoutResponseUrl, isStripeCheckoutUrl, readCheckoutBody, validateSupportRequest, UPDATES_CONSENT_TEXT } from "../lib/education-checkout.mjs";
 
 const attemptId = "dc66f4b3-bbc6-4252-9545-c37e0469fa43";
 const input = { frequency: "monthly", amount: "10", updatesConsent: false, attemptId };
@@ -80,4 +80,14 @@ test("request reader limits actual streamed bytes and rejects malformed JSON", a
   await assert.rejects(readCheckoutBody(request("not json")), SyntaxError);
   await assert.rejects(readCheckoutBody(request('"' + "x".repeat(5000) + '"')), /too large/);
   await assert.rejects(readCheckoutBody(request('"' + "é".repeat(2100) + '"')), /too large/);
+});
+
+test("checkout responses handle hosting throttles/non-JSON errors and keep the redirect allowlist", async () => {
+  await assert.rejects(checkoutResponseUrl(new Response("<html>Rate limited</html>", { status: 429 })), /wait a minute/);
+  await assert.rejects(checkoutResponseUrl(new Response("<html>Unavailable</html>", { status: 503 })), /Could not open checkout/);
+  await assert.rejects(checkoutResponseUrl(Response.json({ error: "Start a new attempt." }, { status: 409 })), /Start a new attempt/);
+  await assert.rejects(checkoutResponseUrl(new Response("not json")), /Could not open checkout/);
+  await assert.rejects(checkoutResponseUrl(Response.json({ url: "https://evil.example/" })), /Could not open checkout/);
+  const url = "https://checkout.stripe.com/c/pay/cs_live_example";
+  assert.equal(await checkoutResponseUrl(Response.json({ url })), url);
 });

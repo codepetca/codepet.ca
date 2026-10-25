@@ -61,17 +61,22 @@ Read this file at the start of every AI-assisted coding session.
   New review session:2launches/1initial wave/1docs-only fix batch; no extra
   review wave required for status corrections. Reviewer token and effective
   runtime telemetry unavailable. Prior test-only coverage remains reused.
-- Lint/build/14Node tests pass, including money/config/metadata/redirect/body
+- Lint/build/15Node tests pass, including money/config/metadata/redirect/body
   regressions. Local preview3220. No push/publication/PR for this integration.
   Minimal Stripe-specific privacy/support terms are prepared locally. Live
   product/portal prepared and saved support email/policy links configured.
   Vercel production hosting verified through GitHub deployment status. Live
-  private configuration verified; provider-use classification, production abuse
-  controls and remaining hosted tests still gate activation. Exact question
+  private configuration verified. Exact question
   about own free-content/education support prepared for Stripe Support. Owner
   chose to ask Stripe personally; do not send or request duplicate permission.
-  Await their response; no agent message sent. Account enablement is
-  not evidence of program-specific approval. Owner tax/name decisions recorded.
+  Owner subsequently instructed proceeding without a response. No agent
+  message sent and no program-specific Stripe approval claimed. Owner tax/name
+  decisions recorded. Vercel's live checkout POST endpoint is limited to10
+  attempts per60seconds/IP. Production-only configuration was added, with the
+  key stored sensitive and activation initially false; preview has no live key.
+  Canonical site is https://www.codepet.ca (bare domain redirects there).
+  Client handles hosting429/non-JSON errors safely; targeted review required for
+  that delta. Provider-owned3DS and email delivery remain coverage limitations.
   See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
 
 ## Earlier merged work (historical status)
