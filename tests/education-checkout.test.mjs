@@ -30,6 +30,8 @@ test("monthly and one-time Checkout fix currency, quantity, product, interval an
   assert.equal(monthly.mode, "subscription");
   assert.deepEqual(monthly.line_items, [{ quantity: 1, price_data: { currency: "cad", product: config.productId, unit_amount: 1000, recurring: { interval: "month" } } }]);
   assert.equal(monthly.customer_creation, undefined);
+  assert.equal(monthly.payment_method_types, undefined);
+  assert.deepEqual(monthly.excluded_payment_method_types, ["klarna", "afterpay_clearpay", "affirm"]);
   assert.equal(monthly.success_url, `${config.origin}/education/thanks?session_id={CHECKOUT_SESSION_ID}`);
   assert.equal(monthly.cancel_url, `${config.origin}/education#support`);
   const once = checkoutParameters(validateSupportRequest({ ...input, frequency: "once", amount: "20.25" }), config);

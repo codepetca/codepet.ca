@@ -8,8 +8,9 @@ inline custom prices. Saved the test customer-portal configuration: invoice
 history, payment-method updates and cancellation at the end of the billing
 period; no cancellation reason, coupons, plan switching or quantity changes.
 Activated its test login link. No live product, key, payment or payout change.
-The existing test secret is being supplied by the owner through ignored private
-configuration; authenticated API and actual payment verification are pending.
+The owner supplied the existing test secret through ignored private configuration.
+Authenticated API verification matches the Codepet dashboard account and confirms
+the active test product and portal; no secret is stored in Git.
 Stripe inherited its SaaS product tax category by default; this is a test-only
 placeholder, not a determination of the contribution's tax treatment. Automatic
 tax is not enabled by this integration. Do not copy that category into live setup
@@ -92,15 +93,34 @@ acceptance, accounting/GST-HST treatment, operating-name requirements, support/
 refund/cancellation wording, portal availability and deployment abuse controls.
 The prior funding plan's accounting/name checks have not been marked complete.
 Add narrow Stripe-specific privacy/terms disclosures before live collection.
-Live-key support, independent security/correctness review and actual end-to-end
-sandbox evidence are still required. Do not weaken the test-only guard merely
+Live-key support and completion of the remaining end-to-end sandbox cases
+are still required. The independent static security/correctness review passed. Do not weaken the test-only guard merely
 to make the funding button active.
 
 Checks so far: lint/build and 13 Node tests pass (six existing campaign tests and
 seven checkout tests). Local API smoke check returns503 with no-store when
 unconfigured; browser verifies disabled checkout and amount-range validation.
-No actual Stripe sandbox checkout or subscription lifecycle
-has been exercised without authenticated account access and a test key.
+Two independent GPT-6.1-Sol/high full-diff reviews passed at
+`d7ed68bad089b6cce3344aa1ff1ade5a822be7f4` over `4292159`: security/consent and
+behavior/compatibility, zero findings or fixes. Static checks do not substitute
+for actual hosted test payments, cancellation/renewal or receipt verification.
+The account is signed in and private test configuration is saved. The attempted
+hidden Terminal prompt was blocked by computer-use safety permissions; no
+alternative clipboard/shell transfer was used. Authenticated tests now verify all eight preset/custom combinations in CAD,
+including same-request idempotency, changed-request409, foreign-origin403,
+wrong-content-type415, invalid/injected400 and no-store. Those API-check Sessions
+were expired. One-time hosted checkout passed decline then success (CAD20),
+optional names omitted, required email, consentfalse propagated to PaymentIntent,
+and verified thank-you. Test-clock simulation passed initial/renewal payments,
+renewal decline, payment-method recovery and cancellation with no next renewal;
+the simulation was cleaned up. Browser3DS authentication displayed a blank Stripe
+challenge frame and remains unverified. Other hosted monthly/portal and receipt
+checks are still in progress.
+
+Actual Stripe testing exposed an API compatibility issue: payment_method_types
+is no longer accepted. The integration now uses Dashboard-managed methods and
+excludes Klarna/Afterpay/Affirm; verified Stripe returns card and Link. A regression
+assertion protects this contract. Lint/build/13tests pass after that correction.
 
 ## Official references
 
