@@ -1,8 +1,10 @@
 # Codepet Education payments
 
 Owner requested Stripe setup on 2026-10-25 after funding UI PR #10 merged.
-The local preview uses test mode. Live catalog/portal preparation is authorized;
-the live payment button has not been published or activated.
+The local preview uses test mode. The owner authorized proceeding with launch
+without waiting for a Stripe Support response. Integration publication is tracked
+in [PR #11](https://github.com/codepetca/codepet.ca/pull/11); verify production's
+deployment and activation setting before reporting that payments are live.
 The owner signed in through Chrome. Created the Codepet Education support test
 product with a CAD $10/month default price; the backend will use that product for
 inline custom prices. Saved the test customer-portal configuration: invoice

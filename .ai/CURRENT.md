@@ -4,11 +4,15 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
-- Stripe setup requested 2026-10-25: `codex/education-stripe-checkout` in
-  `/Users/stew/.codex/worktrees/codepet.ca/education-stripe-checkout`, based on
-  PR #10 (`4292159`). Local checkout uses test mode. Live mode requires a
+- Stripe setup requested 2026-10-25; implemented on `codex/education-stripe-checkout`
+  over PR #10 (`4292159`), with integration PR #11:
+  https://github.com/codepetca/codepet.ca/pull/11. Canonical checkout remains
+  `/Users/stew/Repos/codepet.ca`; retire the feature worktree after merge while
+  preserving private configuration. Local checkout uses test mode. Live mode requires a
   separate activation flag, production runtime, matching live key/portal and
-  official Codepet HTTPS origin. Activation remains disabled.
+  official Codepet HTTPS origin. Owner instructed proceeding with launch without
+  a Stripe Support response; local private activation flags remain false. Check
+  the production environment/deployment for actual live availability.
   Private `.env.local` is ignored and saved. `.env.production.local` is an
   ignored private live-preparation file; never print or commit either file.
   Account/API identity, active test product and portal match Codepet's dashboard.
@@ -64,7 +68,7 @@ Read this file at the start of every AI-assisted coding session.
   review wave required for status corrections. Reviewer token and effective
   runtime telemetry unavailable. Prior test-only coverage remains reused.
 - Lint/build/15Node tests pass, including money/config/metadata/redirect/body
-  regressions. Local preview3220. No push/publication/PR for this integration.
+  regressions. Local preview3220; code/publication tracked through PR #11.
   Minimal Stripe-specific privacy/support terms are prepared locally. Live
   product/portal prepared and saved support email/policy links configured.
   Vercel production hosting verified through GitHub deployment status. Live
