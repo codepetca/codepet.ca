@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { amountToCents, checkoutConfiguration, checkoutParameters, checkoutResponseUrl, isStripeCheckoutUrl, readCheckoutBody, validateSupportRequest, UPDATES_CONSENT_TEXT } from "../lib/education-checkout.mjs";
+import { amountToCents, checkoutConfiguration, checkoutParameters, checkoutResponseUrl, isStripeCheckoutUrl, readCheckoutBody, validateSupportRequest, UPDATES_CONSENT_TEXT, UPDATES_CONSENT_VERSION, UPDATES_CONTACT_TEXT } from "../lib/education-checkout.mjs";
 
 const attemptId = "dc66f4b3-bbc6-4252-9545-c37e0469fa43";
-const input = { frequency: "monthly", amount: "10", updatesConsent: false, attemptId };
+const input = { frequency: "monthly", amount: "10", updatesConsent: false, consentVersion: UPDATES_CONSENT_VERSION, attemptId };
 const config = { origin: "http://127.0.0.1:3220", productId: "prod_testExample" };
 const env = { EDUCATION_PAYMENTS_MODE: "test", STRIPE_SECRET_KEY: "sk_test_example", STRIPE_EDUCATION_PRODUCT_ID: config.productId, EDUCATION_CHECKOUT_ORIGIN: config.origin, EDUCATION_PORTAL_URL: "https://billing.stripe.com/p/login/test_example" };
 
@@ -60,6 +60,7 @@ test("consent evidence is explicit, server-controlled, propagated, and stable fo
       const params = checkoutParameters(support, config);
       assert.equal(params.metadata.updates_consent, String(updatesConsent));
       assert.equal(params.metadata.updates_consent_text, UPDATES_CONSENT_TEXT);
+      assert.equal(params.metadata.updates_consent_contact, UPDATES_CONTACT_TEXT);
       assert.equal(params.metadata.updates_consent_source, "/education#support");
       assert.equal(params.metadata.program, "codepet_education");
       assert.equal(params.metadata.support_attempt_id, attemptId);
@@ -67,6 +68,14 @@ test("consent evidence is explicit, server-controlled, propagated, and stable fo
       assert.deepEqual(checkoutParameters(support, config), params);
     }
   }
+});
+
+test("opt-in requires the current disclosure version while an older unchecked form can still contribute", () => {
+  for (const consentVersion of [undefined, "2026-10-25-v1", "forged"]) {
+    assert.throws(() => validateSupportRequest({ ...input, updatesConsent: true, consentVersion }), /Refresh/);
+    assert.equal(validateSupportRequest({ ...input, updatesConsent: false, consentVersion }).updatesConsent, false);
+  }
+  assert.equal(validateSupportRequest({ ...input, updatesConsent: true }).updatesConsent, true);
 });
 
 test("redirect allowlist accepts only HTTPS Stripe Checkout without credentials or custom ports", () => {

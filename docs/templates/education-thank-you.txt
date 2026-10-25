@@ -1,0 +1,20 @@
+Subject: Thank you for supporting Codepet Education
+Template: education-thank-you-v1 — draft only; replace every placeholder before sending.
+
+Hi {{name_or_there}},
+
+Thank you for your {{amount_cad}} {{one_time_or_monthly}} contribution to Codepet Education on {{payment_date}}.
+
+Stripe sends your payment receipt separately. If you set up monthly support, you can manage or cancel future renewals here:
+https://billing.stripe.com/p/login/dRm8wObC807W0z659c0x200
+
+If you have a payment question, reply to this email. No charitable tax receipt is issued.
+
+Thank you,
+Stewart
+Codepet Education / Codepet Inc.
+Suite 1016, 3175 Highway 7 E, Unit 200
+Markham, ON L3R 0T9, Canada
+info@codepet.ca
+
+To stop optional Codepet Education updates, reply “unsubscribe”.
