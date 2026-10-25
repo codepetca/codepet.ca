@@ -4,35 +4,40 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
-- Codepet is a small public Next.js site for playful learning experiences.
-- The home route renders a pet icon and typewriter interaction. One pet opens
-  `/dash` after the 0.6s heart animation and 360ms page fade; a second pet starts
-  the fade immediately. Navigation preserves the pet in the query string,
-  guards duplicate transitions, and clears its timer on unmount.
-- The dashboard tagline is “Build fun stuff together”. Cards stack vertically
-  in this order: Codepet Education (mortarboard, `/education`), Pika, Labs.
-  Each whole card is a link with visible keyboard focus; Lop is removed.
-- The footer house icon opens `/dash` with a 44px hit area and accessible label.
-  Copyright is plain text. The former global paw header is removed.
-- `/education` introduces Codepet Education, an internal program of Codepet Inc.,
-  and features Zero. Keep visible copy minimal, with links and native collapsed
-  About the program / Support education disclosures. Payments remain pending;
-  the page does not claim charitable status or offer charitable tax receipts.
-- Public routes include `/about`, `/contact`, `/privacy`, `/terms`, `/dash`, and
-  `/education`; the sitemap includes the education page.
-- Next.js and eslint-config-next are pinned to 16.4.0 after dependency advisories
-  were found during this work. Compatible nanoid/source-map-js lockfile updates
-  remove remaining production advisories. Production audit: 0 vulnerabilities;
-  full audit still reports 8 development-tooling advisories (1 moderate/7 high).
-- Verification on 2026-10-09: lint/build pass. Browser checks cover footer→dash,
-  Education card→education, native disclosure open/close using click and Enter,
-  and pet navigation. Single pet measured 1100ms; second pet measured 453ms
-  before the heart-duration refinement. Light desktop dashboard and dark narrow
-  education layout were inspected. Final dark stacked cards fit a 390px viewport
-  with no horizontal overflow. No dedicated test harness exists.
-- PR/merge authorized by the owner on 2026-10-09 for the accumulated Codepet
-  changes. Funding activation, payment-provider setup, and separate Zero changes
-  remain outside this PR. Local preview: http://127.0.0.1:3220.
+- Owner authorized PR and merge on 2026-10-25 for the Education support and
+  campaign preview changes. Payments remain unavailable; no provider setup,
+  account changes, entries, draws, charity commitments, or receipts are enabled.
+- `/dash` stacks Codepet Education, Pika, and Labs cards. Each card is clickable;
+  Education also has a separate green Support Education button. Pika/Labs status
+  chips are removed. The tagline is “Build fun stuff together”.
+- `/education` describes an internal education program of Codepet Inc., with Zero
+  links and native About/Support disclosures. The support button and #support
+  navigation open the disclosure, including after manual collapse.
+- Funding choices are CAD monthly $5/10/20/50 or one-time $10/20/50/100. Defaults
+  are $10 monthly and $20 one-time. Prominent Other amount accepts $1+ with up to
+  two decimals; choices persist separately while switching frequency. Payments
+  coming soon stays disabled. All students get the same tools/materials.
+- `/education/campaign-preview` is an illustrative game-jam campaign, linked from
+  Education, noindex and omitted from the sitemap. The sample deadline is
+  Nov 7, 2026 at 23:59 America/Toronto. Progress starts at 72%, supports 0–175%,
+  and unlocks prize cards at 100/125/150%. Milestones celebrate once per run;
+  Reset allows replay. Ended-state and reduced-motion controls are available.
+  OS reduced-motion preferences also suppress confetti and animation.
+- Existing home pet navigation, footer house link to `/dash`, and policy pages
+  are preserved. One pet navigates after the heart animation and fade; a second
+  pet starts the fade immediately. The former paw header and Lop are removed.
+- Next.js and eslint-config-next are pinned to 16.4.3, patching the critical
+  advisory encountered with 16.4.0. Last production dependency audit was clean;
+  full audit reported four development-tooling advisories.
+- Checks: lint, production build, and six Node helper tests pass. Prior browser
+  checks cover support navigation, radio/custom choices and validation, countdown,
+  100/125/150% milestones, 175% semantics, once-per-run celebrations, ended state,
+  reset, and reduced motion. Dark desktop/narrow layouts had no overflow; the
+  campaign narrow override measured 520px rather than the requested 390px.
+- Review ledger (2026-10-25): standard risk; one independent GPT-6.1-Sol reviewer
+  at medium reasoning for the full diff and immediate callers. Budget: at most
+  seven launches, four fix rounds, 60 minutes. Final revision/verdict recorded
+  in the PR. No separate Zero repository changes belong in this PR.
 
 ## Repo Facts
 
@@ -68,7 +73,7 @@ Read this file at the start of every AI-assisted coding session.
 
 - The global layout centers route content by default, so long pages need their own width and alignment classes.
 - Some components are client components because they use hooks or pathname access. Keep server components as the default for static routes.
-- There is no dedicated unit/e2e test harness yet; verification depends on lint, build, and browser checks for UI changes.
+- Pure campaign helpers have Node tests; UI behavior still requires browser verification.
 - This repo may be edited from the hub checkout or a Codex-managed worktree. Always check `git status --short --branch` before changing files.
 
 ## Normal Checks

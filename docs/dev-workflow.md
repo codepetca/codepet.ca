@@ -69,6 +69,7 @@ Use branch-specific env files only when intentionally isolating backend state or
 npm install
 npm run dev
 npm run lint
+npm test
 npm run build
 ```
 

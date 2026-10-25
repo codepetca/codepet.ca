@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EducationSupportButton, EducationSupportDetails } from "@/components/education-support";
+import { EducationFundingOptions } from "@/components/education-funding-options";
 
 export const metadata: Metadata = {
   title: "Codepet Education",
@@ -16,6 +18,10 @@ export default function EducationPage() {
 
       <h1 className="text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">Codepet Education</h1>
       <p className="mt-4 text-lg leading-7 text-gray-600 dark:text-gray-300">Free tools and resources for students and educators.</p>
+      <div className="flex flex-wrap items-center gap-x-6">
+        <EducationSupportButton />
+        <Link href="/education/campaign-preview" className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400">Campaign preview →</Link>
+      </div>
 
       <section aria-labelledby="zero-title" className="my-10">
         <h2 id="zero-title" className="text-2xl font-semibold text-gray-950 dark:text-white">Zero <span className="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">Experimental</span></h2>
@@ -30,14 +36,15 @@ export default function EducationPage() {
         <summary className="min-h-11 cursor-pointer py-3 text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-gray-200">About the program</summary>
         <p className="pb-4 leading-6 text-gray-600 dark:text-gray-300">Codepet Education is an internal education program of Codepet Inc., bringing together Zero, learning resources, and future education projects.</p>
       </details>
-      <details id="support" className="scroll-mt-8 border-y border-gray-200 text-sm dark:border-gray-800">
+      <EducationSupportDetails>
         <summary className="min-h-11 cursor-pointer py-3 text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-gray-200">Support education</summary>
         <div className="space-y-3 pb-4 leading-6 text-gray-600 dark:text-gray-300">
           <p>Voluntary support helps fund maintenance, learning materials, testing, and development and teaching time. Everyone gets the same Zero tools and materials.</p>
+          <EducationFundingOptions />
           <p>Payments are not yet available. Once set up, contributions will go to Codepet Inc. for Zero and its other education projects. The program does not issue charitable tax receipts.</p>
           <p><a href="https://zero.codepet.ca/community" className="text-blue-600 hover:underline dark:text-blue-400">Contribute examples, guides, or components →</a></p>
         </div>
-      </details>
+      </EducationSupportDetails>
     </section>
   );
 }
