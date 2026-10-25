@@ -4,6 +4,24 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
+- Fee-coverage preview (Oct25): owner requested local preview only, based on
+  main `b58b576` (PR #12 merged/deployed). Branch `codex/education-fee-preview`.
+  New checkbox is unchecked on load; base amount stays in the amount field and
+  the Contribute button shows the full total. Monthly coverage explicitly repeats
+  every month. Estimate grosses up Canadian domestic-card 2.9%+CAD0.30 and adds
+  0.7% Billing for monthly, using integer cents rounded upward. Actual fees vary.
+  The optional addition is part of the contribution sent to the unchanged API;
+  no separate surcharge/item/metadata field. The server still enforces its full
+  CAD1–10,000 charge range. All live settings remain unchanged. No publication
+  or deployment authorized for this preview. Verification:32Node tests, lint,
+  build and diff checks pass. Browser verified unchecked load/reload, on/off,
+  custom cents, frequency switching and full-total10k cap. Actual UI test Stripe
+  Sessions matched CAD10.69monthly/CAD20.91one-time and were expired unpaid.
+  Dark desktop and narrow layout inspected without overflow; requested390px
+  override measured520px (browser minimum), so true390px remains unverified.
+  Local test preview3221 stays running. No independent review or PR yet.
+
+
 
 - Supporter follow-up phase (Oct25): branch `codex/education-supporter-workflow`
   based on merged funding PR #11/main `59f86e1`. Production live payments verified
