@@ -4,6 +4,28 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
+- Stripe setup requested 2026-10-25: local worktree `education-stripe-checkout`,
+  branch `codex/education-stripe-checkout`, based on PR #10 (`4292159`).
+  See `docs/EDUCATION-PAYMENTS.md` for implementation/configuration and gates.
+  Hosted Checkout backend is test-only, defaults disabled, rejects live keys.
+  Owner signed in through Chrome; created the education support test product
+  ($10/month default) and saved/activated the hosted test customer portal, with
+  cancellation at period end and no reason collection, plan or quantity changes.
+  Existing test key is awaiting the owner's save in ignored private .env.local.
+  No live product/payment/payout changes. Tax category inherited SaaS by default;
+  do not use it as a live tax decision. Actual hosted Checkout/lifecycle tests
+  remain pending. Independent review ledger: payment-boundary risk, two fresh
+  GPT-6.1-Sol/high reviewers for security/consent and behavior/compatibility.
+  Initial wave2launches,0fixbatches; cap4fixrounds/7launches/60minutes.
+  Exact reviewed revision/results will be recorded here after acceptance.
+  Nothing pushed/published.
+  Local lint/build and 13 Node tests pass; missing-config API503/no-store and
+  disabled UI/range validation verified. Local preview uses port3220.
+  API helper worker: GPT-6.1-Sol/medium, read-only official docs contract review,
+  no edits or account access. Useful finding: Stripe native promotions consent
+  is US-only, so retain the separate unchecked site checkbox. Worker contract
+  inspected against actual SDK/schema; no rework/conflicts. Telemetry unknown.
+
 - Funding UI refinement authorized for PR/merge on 2026-10-25:
   `codex/supporter-details` adds optional name/organization and an unchecked
   Zero/impact updates option. Email is described as required at future Stripe
