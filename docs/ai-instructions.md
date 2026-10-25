@@ -30,7 +30,7 @@ After that, load only the files needed for the task.
 
 ## Testing And TDD
 
-- Preserve this repo's current testing posture: there is no dedicated test suite yet.
+- Pure campaign helpers use Node's built-in tests via `npm test`; no extra test framework is needed. UI interactions also need browser verification.
 - For non-trivial shared logic, bug fixes, parsers, state machines, data transformations, or security-sensitive behavior, prefer adding focused tests if a harness exists or discuss the missing harness in the handoff.
 - Do not require TDD for docs-only changes, copy edits, visual polish, or small static page updates.
 - If behavior changes are not covered by tests, explain the verification that was performed.

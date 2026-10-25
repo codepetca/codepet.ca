@@ -29,7 +29,7 @@ Follow this checklist at the start of every AI-assisted coding session.
 - Prefer existing App Router, component, Tailwind, FontAwesome, and `next-themes` patterns.
 - Read the route/component you will touch before editing.
 - Keep UI changes responsive and verify that text fits on mobile and desktop.
-- For non-trivial behavior or shared logic, consider tests first; this repo does not currently have a test harness beyond lint/build.
+- For non-trivial behavior or shared logic, consider tests first; pure campaign helpers have Node tests via `npm test`, alongside lint/build and browser checks.
 
 ## Before Handoff
 

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFlask,
   faGraduationCap,
+  faHandHoldingDollar,
   faRocket,
   type IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,7 +15,6 @@ interface Project {
   name: string;
   domain: string;
   href: string;
-  status?: "Beta" | "Experimental";
   description: string;
   icon: IconDefinition;
 }
@@ -31,7 +31,6 @@ const projects: Project[] = [
     name: "Pika",
     domain: "pika.codepet.ca",
     href: "https://pika.codepet.ca",
-    status: "Experimental",
     description: "A classroom LMS for modern learning.",
     icon: faRocket,
   },
@@ -39,7 +38,6 @@ const projects: Project[] = [
     name: "Labs",
     domain: "labs.codepet.ca",
     href: "https://labs.codepet.ca",
-    status: "Beta",
     description: "Early learning experiments and prototypes in progress.",
     icon: faFlask,
   },
@@ -72,11 +70,11 @@ export default function DashPage() {
 
         <div className="grid grid-cols-1 gap-3">
           {projects.map((project) => (
-            <Link
+            <article
               key={project.domain}
-              href={project.href}
-              className="flex flex-col rounded-lg border border-gray-200 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700"
+              className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-md dark:border-gray-800 dark:bg-gray-950 dark:hover:border-gray-700"
             >
+              <Link href={project.href} aria-label={project.name} className="absolute inset-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" />
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-200">
                   <FontAwesomeIcon icon={project.icon} className="h-4 w-4" />
@@ -84,9 +82,6 @@ export default function DashPage() {
                 <h2 className="flex-1 text-lg font-semibold text-gray-950 dark:text-white">
                   {project.name}
                 </h2>
-                {project.status && <span className="rounded-full border border-amber-200 bg-amber-50 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-wide text-amber-700 dark:border-amber-900/70 dark:bg-amber-950/40 dark:text-amber-300">
-                  {project.status}
-                </span>}
               </div>
 
               <div className="mt-3 flex flex-col">
@@ -97,7 +92,13 @@ export default function DashPage() {
                   {project.description}
                 </p>
               </div>
-            </Link>
+              {project.href === "/education" && (
+                <Link href="/education#support" aria-label="Support Codepet Education" className="relative z-10 mt-5 inline-flex min-h-12 w-fit items-center gap-3 rounded-lg bg-emerald-700 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+                  <FontAwesomeIcon icon={faHandHoldingDollar} className="h-5 w-5" aria-hidden="true" />
+                  Support Education
+                </Link>
+              )}
+            </article>
           ))}
         </div>
       </div>
