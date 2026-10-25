@@ -26,10 +26,23 @@ Read this file at the start of every AI-assisted coding session.
   See `docs/EDUCATION-SUPPORTERS.md` and `docs/templates/` for manual sending,
   evidence, unsubscribe and retention instructions. Two unaddressed templates
   are saved in business Gmail Drafts; no thank-you or impact update was sent.
-- Follow-up checks: 27 tests, lint and production build pass. Browser verified collapsed/expanded contact details, unchecked default and
+- Follow-up checks: 29 tests, lint and production build pass. Browser verified collapsed/expanded contact details, unchecked default and
   opt-in checkout; Stripe confirmed exact v2 evidence and CAD10 test total, then
-  the unpaid Session was expired. Independent review pending. These follow-up code/UI changes are local, not
-  deployed; the production checkout from PR #11 remains live.
+  the unpaid Session was expired. Complete security/privacy and compatibility
+  reviews cover `59f86e1..9ddf605`; the targeted `9ddf605..8b02fcd` privacy review
+  resolved the single accepted P2: missing suppression evidence now stops both
+  operations rather than resetting withdrawals. No open findings. These follow-up
+  changes are prepared for a draft PR, not deployed; PR #11 remains live.
+- Follow-up review ledger: high risk (private contact/consent handling), two fresh
+  GPT-6.1-Sol/high initial reviewers and one targeted privacy turn. Three launches,
+  one initial plus one targeted wave, one code fix batch; review window roughly
+  18:47–18:50UTC Oct25, within the60minute budget. Each scope complete; initial
+  privacy1accepted/0rejected, compatibility0findings, targeted0open. Exact worker
+  elapsed/tokens/effective runtime unknown. Code unchanged after reviewed8b02fcd;
+  only this status receipt follows. No additional integration wave adds coverage.
+  A separate GPT-6.1-Sol/medium read-only primary-source consent check supplied
+  disclosure/manual workflow guidance; the coordinator verified its application.
+  No supported worker shutdown tool is exposed; completed runtimes remain idle.
 
 
 - Stripe setup requested 2026-10-25; implemented on `codex/education-stripe-checkout`
