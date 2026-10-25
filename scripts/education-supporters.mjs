@@ -1,4 +1,4 @@
-import { mkdir, chmod, readFile, writeFile, rename, open, unlink } from "node:fs/promises";
+import { mkdir, chmod, readFile, writeFile, rename, open, unlink, readdir } from "node:fs/promises";
 import { homedir } from "node:os";
 import { join } from "node:path";
 import { randomUUID } from "node:crypto";
@@ -38,11 +38,15 @@ try {
   await chmod(directory, 0o700);
   lockPath = join(directory, ".lock");
   lock = await open(lockPath, "wx", 0o600);
+  const previousFiles = (await readdir(directory)).filter(name => name !== ".lock");
+  const firstUse = previousFiles.length === 0;
   await invalidateRecipients();
   const suppressionPath = join(directory, "suppression.json");
-  const suppressions = await jsonFile(suppressionPath, []);
+  if (!firstUse && !previousFiles.includes("suppression.json")) throw new Error("Suppression evidence is missing. Restore or reconcile the private log before exporting or recording more withdrawals; recipients remain empty.");
+  const suppressions = await jsonFile(suppressionPath, firstUse ? [] : undefined);
   if (!Array.isArray(suppressions)) throw new Error("Invalid suppression log; recipients remain empty.");
   for (const row of suppressions) normalizeEmail(row.email);
+  if (firstUse) await atomic(suppressionPath, "[]\n");
   if (command === "suppress") {
     let input;
     if (process.stdin.isTTY) {

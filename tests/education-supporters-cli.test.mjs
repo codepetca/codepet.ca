@@ -15,6 +15,7 @@ async function fixture(run) {
 }
 
 test("withdrawal is normalized and private, clears stale recipients, and deduplicates", async () => fixture(async ({ directory, cli }) => {
+  await writeFile(join(directory, "suppression.json"), "[]\n");
   await writeFile(join(directory, "updates-eligible.csv"), "stale@example.com\n");
   const first = cli(["suppress", "--source", "test withdrawal"], " Person@Example.com \n");
   assert.equal(first.status, 0, first.stderr);
@@ -43,11 +44,34 @@ test("invalid suppression evidence fails closed and is preserved", async () => f
 }));
 
 test("a mode-mismatched or missing key cannot leave an old recipient list usable", async () => fixture(async ({ directory, cli }) => {
+  await writeFile(join(directory, "suppression.json"), "[]\n");
   await writeFile(join(directory, "updates-eligible.csv"), "stale@example.com\n");
   const result = cli(["export"]);
   assert.equal(result.status, 1);
   assert.match(result.stderr, /private Stripe key/);
   assert.doesNotMatch(await readFile(join(directory, "updates-eligible.csv"), "utf8"), /stale@example/);
+}));
+
+test("missing suppression evidence after initialization blocks both operations without recreating an empty log", async () => fixture(async ({ directory, cli }) => {
+  assert.equal(cli(["suppress"], "first@example.com").status, 0);
+  await rm(join(directory, "suppression.json"));
+  for (const command of ["suppress", "export"]) {
+    const result = cli([command], "second@example.com");
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /Suppression evidence is missing/);
+    await assert.rejects(stat(join(directory, "suppression.json")), { code: "ENOENT" });
+    assert.doesNotMatch(await readFile(join(directory, "updates-eligible.csv"), "utf8"), /@example/);
+    assert.equal(JSON.parse(await readFile(join(directory, "latest-export.json"))).status, "refresh_required");
+  }
+}));
+
+test("first-use initialization persists before a failed export so a normal retry remains possible", async () => fixture(async ({ directory, cli }) => {
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const result = cli(["export"]);
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /private Stripe key/);
+    assert.deepEqual(JSON.parse(await readFile(join(directory, "suppression.json"))), []);
+  }
 }));
 
 test("a concurrent operation cannot take or remove the existing lock", async () => fixture(async ({ directory, cli }) => {

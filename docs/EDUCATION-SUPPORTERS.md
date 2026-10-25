@@ -36,6 +36,10 @@ clear the current recipient file. Old snapshots and previously copied CSVs remai
 historical evidence: **never send from an old copy**. Refresh immediately before
 each manual send after processing outstanding replies. Treat any failed export,
 invalid suppression file or non-ready status as a stop for optional updates.
+The empty suppression log is created only for a genuinely new, empty mode
+directory. If it later disappears, both export and suppress stop with an empty
+recipient file. Restore it from protected backup or reconcile the withdrawal
+evidence before proceeding; never replace a missing log with an empty array.
 
 ## Thank-you and impact messages
 
