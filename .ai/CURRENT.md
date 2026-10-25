@@ -4,6 +4,47 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
+
+- Supporter follow-up phase (Oct25): branch `codex/education-supporter-workflow`
+  based on merged funding PR #11/main `59f86e1`. Production live payments verified
+  at https://www.codepet.ca/education#support; local dev stays test-only. The owner
+  accepted receipt/portal checks, reusable drafts and a minimal manual workflow.
+  Sandbox receipt arrived in business Gmail; public portal email login succeeded
+  and selected the older subscribed customer over a newer empty duplicate-email
+  customer. Temporary test subscription/customers were cleaned up. Live automatic
+  email delivery has not been tested with a real charge.
+- New private local exporter reads paid completed Education Sessions, keeps the
+  checkout email/identity and consent evidence, deduplicates eligible recipients,
+  and gives explicit unsubscribe suppression priority. Test/live lists stay
+  outside Git under the owner's private Codepet directory. Failed refreshes and
+  withdrawals clear the current CSV. No automatic sending, provider or database.
+  Live export currently has zero completed contributions/eligible contacts.
+- Consent v2 adds a minimal expandable business contact/withdrawal disclosure and
+  requires the matching client version for opt-in. Earlier v1 grants are held
+  out of the generated updates list. An unchecked repeat payment is not a
+  withdrawal; newer metadata does not lift an explicit suppression automatically.
+  See `docs/EDUCATION-SUPPORTERS.md` and `docs/templates/` for manual sending,
+  evidence, unsubscribe and retention instructions. Two unaddressed templates
+  are saved in business Gmail Drafts; no thank-you or impact update was sent.
+- Follow-up checks: 29 tests, lint and production build pass. Browser verified collapsed/expanded contact details, unchecked default and
+  opt-in checkout; Stripe confirmed exact v2 evidence and CAD10 test total, then
+  the unpaid Session was expired. Complete security/privacy and compatibility
+  reviews cover `59f86e1..9ddf605`; the targeted `9ddf605..8b02fcd` privacy review
+  resolved the single accepted P2: missing suppression evidence now stops both
+  operations rather than resetting withdrawals. No open findings. These follow-up
+  changes are prepared for a draft PR, not deployed; PR #11 remains live.
+- Follow-up review ledger: high risk (private contact/consent handling), two fresh
+  GPT-6.1-Sol/high initial reviewers and one targeted privacy turn. Three launches,
+  one initial plus one targeted wave, one code fix batch; review window roughly
+  18:47–18:50UTC Oct25, within the60minute budget. Each scope complete; initial
+  privacy1accepted/0rejected, compatibility0findings, targeted0open. Exact worker
+  elapsed/tokens/effective runtime unknown. Code unchanged after reviewed8b02fcd;
+  only this status receipt follows. No additional integration wave adds coverage.
+  A separate GPT-6.1-Sol/medium read-only primary-source consent check supplied
+  disclosure/manual workflow guidance; the coordinator verified its application.
+  No supported worker shutdown tool is exposed; completed runtimes remain idle.
+
+
 - Stripe setup requested 2026-10-25; implemented on `codex/education-stripe-checkout`
   over PR #10 (`4292159`), with integration PR #11:
   https://github.com/codepetca/codepet.ca/pull/11. Canonical checkout remains

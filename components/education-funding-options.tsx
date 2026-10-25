@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { amountToCents, checkoutResponseUrl, UPDATES_CONSENT_TEXT } from "@/lib/education-checkout.mjs";
+import { amountToCents, checkoutResponseUrl, UPDATES_CONSENT_TEXT, UPDATES_CONSENT_VERSION, UPDATES_CONTACT_TEXT } from "@/lib/education-checkout.mjs";
 
 type Frequency = "monthly" | "once";
 
@@ -28,7 +28,7 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
     busy.current = true;
     setSubmitting(true);
     setCheckoutError("");
-    const payload = { frequency, amount: rawAmount, updatesConsent };
+    const payload = { frequency, amount: rawAmount, updatesConsent, consentVersion: UPDATES_CONSENT_VERSION };
     const fingerprint = JSON.stringify(payload);
     if (attempt.current?.fingerprint !== fingerprint) attempt.current = { fingerprint, id: crypto.randomUUID() };
     const abort = new AbortController();
@@ -105,6 +105,10 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
           <input type="checkbox" checked={updatesConsent} onChange={event => setUpdatesConsent(event.target.checked)} aria-describedby={`${id}-updates-help`} className="mt-1 h-4 w-4 shrink-0 accent-emerald-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700" />
           <span>{UPDATES_CONSENT_TEXT}<span id={`${id}-updates-help`} className="mt-1 block text-xs text-gray-500 dark:text-gray-400">Optional. Unsubscribe anytime.</span></span>
         </label>
+        <details className="text-xs text-gray-500 dark:text-gray-400">
+          <summary className="min-h-8 cursor-pointer py-1 underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700">About updates</summary>
+          <p className="pt-1 leading-5">{UPDATES_CONTACT_TEXT} You can also reply “unsubscribe” to an updates email. This choice does not affect your contribution.</p>
+        </details>
       </fieldset>
       <button type="button" onClick={openCheckout} disabled={!checkoutReady || !valid || submitting} className="min-h-12 w-full rounded-lg bg-emerald-700 px-5 py-3 text-base font-semibold text-white hover:bg-emerald-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700 disabled:opacity-60">
         <span aria-live="polite">{submitting ? "Opening Stripe…" : valid ? `Contribute ${currency.format(Number(rawAmount))} CAD${frequency === "monthly" ? " / month" : " one-time"}` : "Choose an amount"}</span>

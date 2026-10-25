@@ -1,0 +1,20 @@
+Subject: Zero update: {{specific_learning_improvement}}
+Template: education-impact-v1 — opted-in recipients only; replace every placeholder before sending.
+
+Hi {{name_or_there}},
+
+Here’s a short update on Zero and Codepet’s education projects.
+
+{{One or two sentences about a shipped improvement or completed learning activity.}}
+
+{{One verified result, date or link that shows what changed for learners.}}
+
+Your support helps make this work possible. Thank you.
+
+Stewart
+Codepet Education / Codepet Inc.
+Suite 1016, 3175 Highway 7 E, Unit 200
+Markham, ON L3R 0T9, Canada
+info@codepet.ca
+
+You’re receiving this because you chose Zero and impact updates when contributing. Reply “unsubscribe” to stop optional Codepet Education updates.

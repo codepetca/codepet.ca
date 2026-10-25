@@ -3,8 +3,10 @@
 Owner requested Stripe setup on 2026-10-25 after funding UI PR #10 merged.
 The local preview uses test mode. The owner authorized proceeding with launch
 without waiting for a Stripe Support response. Integration publication is tracked
-in [PR #11](https://github.com/codepetca/codepet.ca/pull/11); verify production's
-deployment and activation setting before reporting that payments are live.
+in merged [PR #11](https://github.com/codepetca/codepet.ca/pull/11), main `59f86e1`.
+Vercel production is live at https://www.codepet.ca/education#support, verified
+October25 with unpaid live Checkout Sessions that were subsequently expired.
+Private local activation flags remain false. No real charge was made.
 The owner signed in through Chrome. Created the Codepet Education support test
 product with a CAD $10/month default price; the backend will use that product for
 inline custom prices. Saved the test customer-portal configuration: invoice
@@ -26,16 +28,18 @@ reason questionnaire, coupons, plan or quantity switching. The portal identifies
 Codepet Education and Codepet Inc. No live charge or subscription was created.
 Stripe's public settings now link to the site's privacy, terms and contact pages
 and use the saved Codepet business support email. Successful-payment/refund
-receipt emails are enabled for future transactions; actual delivery is untested.
-No receipt or updates email was manually sent.
+receipt emails are enabled. Sandbox receipt delivery and public portal email
+login were subsequently verified; see [supporter follow-up](EDUCATION-SUPPORTERS.md).
+No impact update or personal thank-you was sent.
 
 The owner saved the live key privately. Read-only live API verification confirmed
 the expected Codepet Inc. Canadian account, charges/payouts enabled, active live
 education product with Nontaxable category, CAD10/month default price, and the
 matching active live portal login/configuration. Cancellation is at period end,
 reason collection and plan updates disabled, invoices/payment updates enabled.
-The activation flag remains false. No live Checkout Session, customer, charge or
-subscription was created for this verification; no secret was printed or retained
+During that read-only preparation the activation flag remained false. Production
+activation was subsequently authorized and deployed; no live customer, charge or
+subscription was created by our verification. No secret was printed or retained
 in documentation.
 
 Provider-use classification has not been confirmed. Stripe's
@@ -71,8 +75,9 @@ References:
 - Suggested monthly $5/10/20; one-time $10/20/50. Existing defaults $10 monthly
   and $20 one-time. Custom amounts currently limited to $1–10,000 per payment;
   this is an application safety limit, not Stripe's maximum.
-- `POST /api/support/checkout` accepts only amount, frequency, updatesConsent
-  and a random UUID attemptId. Same attempt retries keep the same parameters
+- `POST /api/support/checkout` accepts only amount, frequency, updatesConsent,
+  consentVersion and a random UUID attemptId. Opt-in requires the current
+  disclosure version. Same attempt retries keep the same parameters
   and Stripe idempotency key. Edits start a new attempt; a conflict requires a
   fresh attempt. Server fixes the currency, product and callback destinations.
 - Same-origin JSON requests only, with a 4 KiB streamed body limit. Stripe SDK
@@ -89,12 +94,12 @@ References:
   organization preview inputs are replaced by a short explanation.
 - The site supplies the separate unchecked updates checkbox. Stripe's native
   promotions consent is US-only. Server-controlled consent text/version/source,
-  the boolean and attempt ID are retained in Session metadata and copied to
-  PaymentIntent or Subscription metadata. Session.created is the server-recorded
-  submission time; no fresh timestamp is inserted during idempotent retries.
+  contact disclosure, boolean and attempt ID are retained in Session metadata and
+  copied to PaymentIntent or Subscription metadata. Session.created is the Stripe
+  Session creation time; no fresh timestamp is inserted during idempotent retries.
   This records a choice; it does not automatically subscribe or email anyone.
 - `/education/thanks` queries Stripe before confirming a completed, paid test
-  Session for this program. The redirect alone is not payment proof. No personal
+  or live Session matching the configured mode for this program. The redirect alone is not payment proof. No personal
   contact details are rendered. No webhook, donor account or new database.
 
 ## Private configuration
@@ -138,7 +143,7 @@ passwords, verification codes and API keys out of chat and Git.
    presets and custom cents; verify CAD totals, optional names, required email,
    recipient and no charitable receipt promise.
 2. Verify opt-in and opt-out metadata, Session.created evidence and a private
-   export combining completed Sessions with Customer names/email. An updates
+   export using the identity captured in completed Sessions. An updates
    list must exclude abandoned payments and honor later unsubscribes; Stripe
    historical metadata alone is not a mailing-list suppression system.
 3. Test successful, declined and authentication-required initial payments,
@@ -194,7 +199,9 @@ The test portal showed the paid invoice and payment-method controls; cancellatio
 was scheduled for the current period end and verified against Stripe's API.
 Stripe represented this with cancel_at matching the item's current_period_end,
 although cancel_at_period_end was false. Public email-login, duplicate-email
-selection and actual receipt-email delivery remain unverified. No email was sent.
+selection and actual receipt-email delivery were gaps at that stage. Both were
+subsequently verified in the sandbox; details and the manual consent/unsubscribe
+workflow are in [supporter follow-up](EDUCATION-SUPPORTERS.md).
 
 Actual Stripe testing exposed an API compatibility issue: payment_method_types
 is no longer accepted. The integration now uses Dashboard-managed methods and
