@@ -1,7 +1,8 @@
 # Codepet Education payments
 
 Owner requested Stripe setup on 2026-10-25 after funding UI PR #10 merged.
-The current implementation is local test-mode preparation, not live activation.
+The local preview uses test mode. Live catalog/portal preparation is authorized;
+the live payment button has not been published or activated.
 The owner signed in through Chrome. Created the Codepet Education support test
 product with a CAD $10/month default price; the backend will use that product for
 inline custom prices. Saved the test customer-portal configuration: invoice
@@ -11,10 +12,15 @@ Activated its test login link. No live product, key, payment or payout change.
 The owner supplied the existing test secret through ignored private configuration.
 Authenticated API verification matches the Codepet dashboard account and confirms
 the active test product and portal; no secret is stored in Git.
-Stripe inherited its SaaS product tax category by default; this is a test-only
-placeholder, not a determination of the contribution's tax treatment. Automatic
-tax is not enabled by this integration. Do not copy that category into live setup
-without accounting review.
+After approving the no-benefit contribution tax treatment, the owner instructed
+us to continue with Codepet Education and said they will file the operating name
+later. Both education product setups now use Stripe's Nontaxable category
+`txcd_00000000`; the account-wide SaaS preset was not changed. Checkout explicitly
+disables automatic tax. This records the chosen treatment, not a CRA ruling.
+Created the live education product and a live portal configuration/login link
+with invoice history, payment-method updates and period-end cancellation; no
+reason questionnaire, coupons, plan or quantity switching. The portal identifies
+Codepet Education and Codepet Inc. No live charge or subscription was created.
 
 ## Local integration
 
@@ -56,10 +62,20 @@ STRIPE_EDUCATION_PRODUCT_ID=<existing or approved test product ID>
 EDUCATION_PORTAL_URL=<activated Stripe test portal login URL>
 ```
 
-The integration fails closed with missing/invalid settings and rejects live
-keys even if live mode is requested. No `NEXT_PUBLIC_` secret exists. Local
+The integration fails closed with missing/invalid settings and rejects mismatched
+test/live keys or portal URLs. No `NEXT_PUBLIC_` secret exists. Local
 loopback HTTP or an explicit HTTPS origin is required; the Host header cannot
 choose the callback origin. Do not use a production key to test.
+
+Live preparation is separate from activation. Live mode additionally requires
+`EDUCATION_PAYMENTS_MODE=live`, `EDUCATION_LIVE_PAYMENTS_APPROVED=true`,
+`NODE_ENV=production`, a private live key, the live product and live portal URL,
+and the exact HTTPS origin `https://codepet.ca` or `https://www.codepet.ca`.
+Localhost, preview hosts, ports and a test portal/key are rejected in live mode.
+The runtime checks the returned Session's livemode and the thank-you route only
+retrieves Session IDs for the configured mode. Do not enable the activation flag
+until deployment controls and the final owner launch decision are complete.
+Never paste live secrets into chat or commit them.
 
 The existing Codepet dashboard and test-mode context are accessible. Verify the
 key belongs to that same account before making API changes. The test product
@@ -91,11 +107,14 @@ passwords, verification codes and API keys out of chat and Git.
 Before live activation, confirm corporate charges/payout eligibility, funding-use
 acceptance, accounting/GST-HST treatment, operating-name requirements, support/
 refund/cancellation wording, portal availability and deployment abuse controls.
-The prior funding plan's accounting/name checks have not been marked complete.
-Add narrow Stripe-specific privacy/terms disclosures before live collection.
-Live-key support and completion of the remaining end-to-end sandbox cases
-are still required. The independent static security/correctness review passed. Do not weaken the test-only guard merely
-to make the funding button active.
+The source review below is complete. The owner approved the working no-benefit
+support GST/HST treatment and will handle operating-name filing later; no external
+tax sign-off or filing is represented as complete. Narrow Stripe-specific
+privacy/support terms are prepared locally. Production is deployed by Vercel
+(confirmed from GitHub deployment status); deployment-specific abuse controls,
+private live configuration and remaining hosted cases still need verification.
+The original test-only code passed independent static review; live-mode changes
+require their own proportional review before activation.
 
 Checks so far: lint/build and 13 Node tests pass (six existing campaign tests and
 seven checkout tests). Local API smoke check returns503 with no-store when
@@ -114,13 +133,71 @@ optional names omitted, required email, consentfalse propagated to PaymentIntent
 and verified thank-you. Test-clock simulation passed initial/renewal payments,
 renewal decline, payment-method recovery and cancellation with no next renewal;
 the simulation was cleaned up. Browser3DS authentication displayed a blank Stripe
-challenge frame and remains unverified. Other hosted monthly/portal and receipt
-checks are still in progress.
+challenge frame and remains unverified. Hosted custom monthly checkout passed
+at CAD12.50, with optional individual/business names and consenttrue retained.
+The test portal showed the paid invoice and payment-method controls; cancellation
+was scheduled for the current period end and verified against Stripe's API.
+Stripe represented this with cancel_at matching the item's current_period_end,
+although cancel_at_period_end was false. Public email-login, duplicate-email
+selection and actual receipt-email delivery remain unverified. No email was sent.
 
 Actual Stripe testing exposed an API compatibility issue: payment_method_types
 is no longer accepted. The integration now uses Dashboard-managed methods and
 excludes Klarna/Afterpay/Affirm; verified Stripe returns card and Link. A regression
 assertion protects this contract. Lint/build/13tests pass after that correction.
+
+## Accounting and operating-name review — 2026-10-25
+
+Owner requested a source check and discussion before real payments. This is a
+documented preliminary assessment, not accountant sign-off or a CRA ruling.
+
+- Keep Codepet Education within Codepet Inc. The program does not acquire
+  nonprofit or charitable status by being educational. Ordinary acknowledgements
+  only; the existing no-charitable-tax-receipt disclosure stays.
+- Budget support as corporate business income, tracking gross contributions,
+  Stripe fees and education spending separately in existing books. CRA's
+  income-tax folio paragraph1.5 and its crowdfunding example support this
+  treatment; confirm account mapping and expense treatment with the accountant.
+- Proposed GST/HST treatment for the current no-benefit support model: payments
+  outside the scope of GST/HST where there is no direct link to a supply. CRA's
+  Memorandum18-4 includes contributions from individuals and commercial
+  organizations. This is not an education exemption. Free equal access, no paid
+  entitlements and no promised advertising support that assessment. Monthly
+  billing or the word support alone does not determine tax treatment. The owner
+  explicitly approved this working treatment on October25; no CRA ruling or
+  licensed accountant sign-off has been obtained. Reassess
+  separately if perks, advertising, entry fees or specified-recipient services
+  are introduced. Do not rely on the inherited Stripe SaaS classification.
+- Private company records report an active GST/HST account, owner-confirmed
+  July21; current CRA status/reporting dates were not independently reverified.
+  This review does not determine input-tax-credit allocation for program costs.
+- Ontario guidance requires corporations using a different business name to
+  register it. Recommended route if retaining the public Codepet Education
+  identity: register that operating name under the existing corporation, with
+  Codepet Inc. as payment recipient. Direct government registration is $60 and
+  lasts five years. No new corporation or separate bank account is proposed.
+  Free OBR search confirmed Codepet Inc.'s federal extra-provincial entry;
+  no Codepet Education entry appeared in the Codepet results. An exact-match
+  search for Codepet Education across all registers/statuses returned no results.
+  This is a basic
+  search, not a certified name-clearance or trademark opinion. No filing made.
+
+Focused question prepared for the accountant (not sent):
+
+> Codepet Inc. proposes optional one-time and recurring support for free Zero
+> and education projects. Support buys no access, licence, advertising, reward
+> or service for the payer or a named third party. Can we record gross support
+> as business income, fees separately, and treat receipts as outside GST/HST
+> under Memorandum18-4? Please confirm expense/ITC allocation as well.
+
+Sources checked:
+
+- [CRA income-tax folio, gifts/business receipts, paragraphs1.3–1.5](https://www.canada.ca/en/revenue-agency/services/tax/technical-information/income-tax/income-tax-folios-index/series-3-property-investments-savings-plans/series-3-property-investments-savings-plans-folio-9-miscellaneous-payments-receipts/income-tax-folio-s3-f9-c1-lottery-winnings-miscellaneous-receipts-income-losses-crime.html)
+- [CRA GST/HST Memorandum18-4, paragraphs1–16](https://www.canada.ca/en/revenue-agency/services/forms-publications/publications/18-4/determining-whether-transfer-payment-consideration-supply.html)
+- [CRA charity/NPO differences](https://www.canada.ca/en/revenue-agency/services/charities-giving/about-registered-charities/what-difference-between-a-registered-charity-a-non-profit-organization.html)
+- [Ontario business-name registration notice, effective February1,2025](https://forms.mgcs.gov.on.ca/en/dataset/6073def4-7470-47a9-bf13-4bc22cec9bda/resource/48361552-0263-4e5b-b4d6-43bbfac83fe1/download/on00227e.pdf)
+- [FedDev Ontario registration guidance and fee](https://sbs-spe.feddevontario.canada.ca/en/starting-business-getting-started)
+- [Ontario Business Registry and free search entry](https://www.ontario.ca/page/ontario-business-registry)
 
 ## Official references
 

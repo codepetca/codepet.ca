@@ -8,7 +8,7 @@ type Frequency = "monthly" | "once";
 const amounts = { monthly: [5, 10, 20], once: [10, 20, 50] };
 const currency = new Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" });
 
-export function EducationFundingOptions({ checkoutReady = false, portalUrl }: { checkoutReady?: boolean; portalUrl?: string }) {
+export function EducationFundingOptions({ checkoutReady = false, testMode = true, portalUrl }: { checkoutReady?: boolean; testMode?: boolean; portalUrl?: string }) {
   const id = useId();
   const [frequency, setFrequency] = useState<Frequency>("monthly");
   const [selected, setSelected] = useState({ monthly: "10", once: "20" });
@@ -114,7 +114,7 @@ export function EducationFundingOptions({ checkoutReady = false, portalUrl }: { 
         <span aria-live="polite">{submitting ? "Opening Stripe…" : valid ? `Contribute ${currency.format(Number(rawAmount))} CAD${frequency === "monthly" ? " / month" : " one-time"}` : "Choose an amount"}</span>
       </button>
       {checkoutError && <p role="alert" className="text-sm text-red-700 dark:text-red-400">{checkoutError}</p>}
-      <p className="text-xs text-gray-500 dark:text-gray-400">{checkoutReady ? "Test checkout with Stripe. No real money. " : "Payments coming soon. Preview only. Details aren’t saved. "}<a href="/privacy" className="underline">Privacy</a></p>
+      <p className="text-xs text-gray-500 dark:text-gray-400">{checkoutReady ? testMode ? "Test checkout with Stripe. No real money. " : "Secure checkout with Stripe. " : "Payments coming soon. Preview only. Details aren’t saved. "}<a href="/privacy" className="underline">Privacy</a>{" · "}<a href="/terms#education-support" className="underline">Support terms</a></p>
       {checkoutReady && frequency === "monthly" && portalUrl && <p className="text-xs text-gray-500 dark:text-gray-400">Monthly until canceled. <a href={portalUrl} className="underline">Manage monthly support</a></p>}
     </section>
   );

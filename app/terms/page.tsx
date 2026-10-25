@@ -9,7 +9,7 @@ export default function TermsPage() {
   return (
     <article className="w-full max-w-2xl mx-auto px-6 py-8 self-start">
       <h1 className="text-2xl font-bold mb-2">Terms and Conditions of Use</h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: February 2025</p>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: October 25, 2026</p>
 
       <p className="mb-4">
         These terms and conditions (&ldquo;Terms&rdquo;, &ldquo;Agreement&rdquo;)
@@ -128,6 +128,27 @@ export default function TermsPage() {
           then-current rate.
         </li>
       </ul>
+
+      <h2 id="education-support" className="text-xl font-semibold mt-6 mb-3 scroll-mt-6">
+        Codepet Education Support
+      </h2>
+      <p className="mb-4">
+        Codepet Education is an internal program of Codepet Inc. Contributions
+        support Zero and Codepet Inc.&apos;s other education projects. They do
+        not purchase access, products, services, rewards or ownership. Everyone
+        gets the same Zero tools and materials. No charitable tax receipt is
+        issued.
+      </p>
+      <p className="mb-4">
+        Stripe checkout shows the amount in Canadian dollars and whether it is
+        one-time or monthly before you pay. Monthly support renews each month
+        at your chosen amount until canceled. Use Manage monthly support on the
+        education page or contact us to cancel future renewals. Cancellation is
+        scheduled for the end of the current billing period and does not itself
+        refund earlier contributions. Contact us for payment questions or refund
+        requests. Your statutory rights are unaffected. These support terms
+        apply specifically to education contributions rather than paid Services.
+      </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">
         5. Limitation of Liability

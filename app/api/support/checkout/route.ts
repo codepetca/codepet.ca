@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   catch (error) { return response({ error: error instanceof SyntaxError ? "Invalid support request." : error instanceof Error ? error.message : "Invalid support request." }, 400); }
   try {
     const session = await setup.stripe.checkout.sessions.create(checkoutParameters(support, setup.config), { idempotencyKey: `education:${support.attemptId}` });
-    if (session.livemode || !isStripeCheckoutUrl(session.url)) return response({ error: "Checkout is unavailable. Please try again later." }, 502);
+    if (session.livemode !== (setup.config.mode === "live") || !isStripeCheckoutUrl(session.url)) return response({ error: "Checkout is unavailable. Please try again later." }, 502);
     return response({ url: session.url });
   } catch (error) {
     // Do not log or return Stripe request payloads, contact details, or secrets.

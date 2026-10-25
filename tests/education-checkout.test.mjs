@@ -25,6 +25,14 @@ test("configuration fails closed for missing settings, live keys and untrusted c
   for (const patch of [{ EDUCATION_PAYMENTS_MODE: undefined }, { EDUCATION_PAYMENTS_MODE: "live" }, { STRIPE_SECRET_KEY: "sk_live_example" }, { STRIPE_SECRET_KEY: "" }, { STRIPE_EDUCATION_PRODUCT_ID: "price_other" }, { EDUCATION_CHECKOUT_ORIGIN: "http://codepet.ca" }, { EDUCATION_CHECKOUT_ORIGIN: "https://user:pass@codepet.ca" }, { EDUCATION_CHECKOUT_ORIGIN: "https://codepet.ca/path" }, { EDUCATION_CHECKOUT_ORIGIN: "https://codepet.ca?next=bad" }]) assert.equal(checkoutConfiguration({ ...env, ...patch }), null);
 });
 
+test("live configuration requires deliberate activation, production, matching key/portal and Codepet HTTPS origin", () => {
+  const live = { ...env, EDUCATION_PAYMENTS_MODE: "live", EDUCATION_LIVE_PAYMENTS_APPROVED: "true", NODE_ENV: "production", STRIPE_SECRET_KEY: "sk_live_example", EDUCATION_PORTAL_URL: "https://billing.stripe.com/p/login/example", EDUCATION_CHECKOUT_ORIGIN: "https://codepet.ca" };
+  assert.equal(checkoutConfiguration(live)?.mode, "live");
+  assert.equal(checkoutConfiguration({ ...live, EDUCATION_CHECKOUT_ORIGIN: "https://www.codepet.ca" })?.mode, "live");
+  for (const patch of [{ EDUCATION_LIVE_PAYMENTS_APPROVED: "false" }, { EDUCATION_LIVE_PAYMENTS_APPROVED: undefined }, { NODE_ENV: "development" }, { NODE_ENV: undefined }, { STRIPE_SECRET_KEY: "sk_test_example" }, { EDUCATION_PORTAL_URL: env.EDUCATION_PORTAL_URL }, { EDUCATION_CHECKOUT_ORIGIN: config.origin }, { EDUCATION_CHECKOUT_ORIGIN: "https://other.example" }, { EDUCATION_CHECKOUT_ORIGIN: "https://codepet.ca:444" }]) assert.equal(checkoutConfiguration({ ...live, ...patch }), null);
+  assert.equal(checkoutConfiguration({ ...env, EDUCATION_PORTAL_URL: live.EDUCATION_PORTAL_URL }), null);
+});
+
 test("monthly and one-time Checkout fix currency, quantity, product, interval and redirect destinations", () => {
   const monthly = checkoutParameters(validateSupportRequest(input), config);
   assert.equal(monthly.mode, "subscription");
@@ -32,6 +40,7 @@ test("monthly and one-time Checkout fix currency, quantity, product, interval an
   assert.equal(monthly.customer_creation, undefined);
   assert.equal(monthly.payment_method_types, undefined);
   assert.deepEqual(monthly.excluded_payment_method_types, ["klarna", "afterpay_clearpay", "affirm"]);
+  assert.deepEqual(monthly.automatic_tax, { enabled: false });
   assert.equal(monthly.success_url, `${config.origin}/education/thanks?session_id={CHECKOUT_SESSION_ID}`);
   assert.equal(monthly.cancel_url, `${config.origin}/education#support`);
   const once = checkoutParameters(validateSupportRequest({ ...input, frequency: "once", amount: "20.25" }), config);
@@ -39,6 +48,7 @@ test("monthly and one-time Checkout fix currency, quantity, product, interval an
   assert.equal(once.customer_creation, "always");
   assert.equal(once.line_items[0].price_data.unit_amount, 2025);
   assert.equal(once.line_items[0].price_data.recurring, undefined);
+  assert.deepEqual(once.automatic_tax, { enabled: false });
   assert.equal(monthly.customer_email, undefined);
   assert.deepEqual(monthly.name_collection, { individual: { enabled: true, optional: true }, business: { enabled: true, optional: true } });
 });

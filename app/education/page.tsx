@@ -40,9 +40,9 @@ export default function EducationPage() {
       <EducationSupportDetails>
         <summary className="min-h-11 cursor-pointer py-3 text-gray-700 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 dark:text-gray-200">Support education</summary>
         <div className="space-y-3 pb-4 leading-6 text-gray-600 dark:text-gray-300">
-          <p>Voluntary support helps fund maintenance, learning materials, testing, and development and teaching time. Everyone gets the same Zero tools and materials.</p>
-          <EducationFundingOptions checkoutReady={checkoutReady} portalUrl={checkout?.portalUrl} />
-          <p>{checkoutReady ? "Test mode only. Live payments are not yet available. " : "Payments are not yet available. "}Once set up, contributions will go to Codepet Inc. for Zero and its other education projects. The program does not issue charitable tax receipts.</p>
+          <p>Support helps fund maintenance, learning materials, testing, and development and teaching time. Everyone gets the same Zero tools and materials.</p>
+          <EducationFundingOptions checkoutReady={checkoutReady} testMode={checkout?.mode !== "live"} portalUrl={checkout?.portalUrl} />
+          <p>{checkoutReady ? checkout.mode === "test" ? "Test mode only. Live payments are not yet available. " : "" : "Payments are not yet available. "}Contributions support Codepet Inc. for Zero and its other education projects. No charitable tax receipt.</p>
           <p><a href="https://zero.codepet.ca/community" className="text-blue-600 hover:underline dark:text-blue-400">Contribute examples, guides, or components →</a></p>
         </div>
       </EducationSupportDetails>
