@@ -86,7 +86,7 @@ supporters asking them to opt in; the website can offer the choice.
 
 ## Consent evidence and limits
 
-The unchecked updates choice includes a collapsed “About updates” disclosure
+The unchecked updates choice includes a collapsed “Details” disclosure
 identifying Codepet Inc., its mailing/contact details and withdrawal route. The
 client must submit the current disclosure version to opt in. Stripe records the
 choice, exact text/contact/version, source and attempt ID in Session metadata.

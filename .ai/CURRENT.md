@@ -4,6 +4,45 @@ Read this file at the start of every AI-assisted coding session.
 
 ## Current Shape
 
+- Fee-coverage preview (Oct25): owner initially requested a local preview, based on
+  main `b58b576` (PR #12 merged/deployed). Branch `codex/education-fee-preview`.
+  New checkbox is unchecked on load; base amount stays in the amount field and
+  the Contribute button shows the full total. Monthly coverage explicitly repeats
+  every month. Estimate grosses up Canadian domestic-card 2.9%+CAD0.30 and adds
+  0.7% Billing for monthly, using integer cents rounded upward. Actual fees vary.
+  The optional addition is part of the contribution sent to the unchanged API;
+  no separate surcharge/item/metadata field. The server still enforces its full
+  CAD1–10,000 charge range. Owner now authorized PR, merge and production deployment of these funding
+  changes. Provider/account settings remain unchanged. Verification:32Node tests, lint,
+  build and diff checks pass. Browser verified unchecked load/reload, on/off,
+  custom cents, frequency switching and full-total10k cap. Actual UI test Stripe
+  Sessions matched CAD10.69monthly/CAD20.91one-time and were expired unpaid.
+  Dark desktop and narrow layout inspected without overflow; requested390px
+  override measured520px (browser minimum), so true390px remains unverified.
+  Local test preview3221 stays running. Publication tracked in PR #13:
+  https://github.com/codepetca/codepet.ca/pull/13.
+  Owner then requested removal of secondary notes. Amount currency context and
+  checkbox help remain available to screen readers; visible fee estimate, checkout
+  email/name explanation and update contact information sit behind one Details
+  disclosure. Main amounts, checkbox labels, full-total button and utility links
+  stay visible. No payment calculation or consent metadata change. Lint/build
+  and browser checks pass after this cleanup; prior32money/helper tests reused.
+  The divider between checkboxes is also removed, browser-confirmed at0px.
+- Fee-coverage review complete at `0784018` over `b58b576`: high risk
+  (financial totals), two fresh GPT-6.1-Sol/high reviewers. Money/security scope
+  complete with0findings, including independent BigInt checks of1,999,802 legal
+  amount/frequency pairs and full-charge serialization. Compatibility/UI scope
+  complete with0code findings; offline state/consent/payload/retry tests passed.
+  One accepted P3 documentation label corrected (About updates → Details).
+  Ledger:2launches,1initial wave,1docs-only fix batch,0code fixes; approximately
+  21:45–21:47UTC Oct25, within60minutes. No further review wave adds coverage
+  because reviewed code is unchanged. Exact worker elapsed/tokens/effective
+  configuration unknown; no supported worker shutdown control exposed.
+  Reused32tests/lint/build and browser/provider evidence. True390px layout and
+  assistive-technology interaction remain unverified. CI passed at reviewed head;
+  final documentation receipt will get its own CI before merge.
+
+
 
 - Supporter follow-up phase (Oct25): branch `codex/education-supporter-workflow`
   based on merged funding PR #11/main `59f86e1`. Production live payments verified
