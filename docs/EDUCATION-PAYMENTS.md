@@ -27,6 +27,37 @@ and use the saved Codepet business support email. Successful-payment/refund
 receipt emails are enabled for future transactions; actual delivery is untested.
 No receipt or updates email was manually sent.
 
+The owner saved the live key privately. Read-only live API verification confirmed
+the expected Codepet Inc. Canadian account, charges/payouts enabled, active live
+education product with Nontaxable category, CAD10/month default price, and the
+matching active live portal login/configuration. Cancellation is at period end,
+reason collection and plan updates disabled, invoices/payment updates enabled.
+The activation flag remains false. No live Checkout Session, customer, charge or
+subscription was created for this verification; no secret was printed or retained
+in documentation.
+
+Provider-use classification still needs confirmation before launch. Stripe's
+tips/donations guidance distinguishes support for already-provided content from
+donations for a committed charitable purpose, and its restricted-business rules
+address fundraising. Account enablement is not specific approval of this program.
+Prepared the following request for Stripe Support; do not send without the
+owner's explicit messaging authorization:
+
+> Codepet Inc. is a Canadian for-profit corporation. Our Codepet Education
+> program distributes our free Zero Java teaching kit and learning materials at
+> zero.codepet.ca. We want to accept optional one-time and monthly contributions
+> through codepet.ca/education to maintain these free resources and develop more
+> education projects. Paying provides no additional access, services, rewards or
+> ownership; all users receive the same resources. Funds go to Codepet Inc. for
+> its own projects, and we issue no charitable tax receipts. Is this model
+> supported on our existing Stripe account? Please confirm the appropriate
+> classification and whether program-specific approval or documentation is needed.
+
+References:
+
+- [Stripe tips/donations requirements](https://support.stripe.com/questions/requirements-for-accepting-tips-or-donations)
+- [Stripe restricted businesses](https://stripe.com/legal/restricted-businesses)
+
 ## Local integration
 
 - Stripe SDK pinned to 23.0.1. Hosted Checkout, CAD, quantity one, no rewards,
