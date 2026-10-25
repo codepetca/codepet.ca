@@ -75,8 +75,13 @@ Read this file at the start of every AI-assisted coding session.
   attempts per60seconds/IP. Production-only configuration was added, with the
   key stored sensitive and activation initially false; preview has no live key.
   Canonical site is https://www.codepet.ca (bare domain redirects there).
-  Client handles hosting429/non-JSON errors safely; targeted review required for
-  that delta. Provider-owned3DS and email delivery remain coverage limitations.
+  Client handles hosting429/non-JSON errors safely. stripe_live_behavior reviewed
+  complete8335ddd..9a5418f delta at high reasoning: complete, no findings;
+  synthetic retry/409/429/abort/client tests passed. Review session now3launches,
+  1initial+1targeted wave,2fix batches (docs then hosting errors), under60minutes;
+  no further code changes. Live WAF probe with invalid requests gave10x404 then
+  429 before deployment, confirming enforcement without Stripe calls.
+  Provider-owned3DS and email delivery remain coverage limitations.
   See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
 
 ## Earlier merged work (historical status)

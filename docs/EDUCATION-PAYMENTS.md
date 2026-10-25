@@ -80,6 +80,8 @@ References:
   (fixed window, normal429response). Only this new rule was staged/published;
   no unrelated draft or bypass settings changed. Client handles429 and non-JSON
   hosting errors with useful messages and preserves redirect validation.
+  A live pre-deployment probe using only invalid requests returned10x404 then
+  429, verifying enforcement without creating Stripe objects.
 - Native Stripe optional individual/business-name fields and required email
   collect identity once at checkout. When checkout is enabled, the local name/
   organization preview inputs are replaced by a short explanation.
@@ -201,6 +203,9 @@ without changing reviewed code. Synthetic mode/route/thank-you checks passed.
 The 14-test suite, lint/build and local browser checks pass for live preparation.
 Additional actual Stripe test Sessions for both frequencies at CAD12.50 confirmed
 automatic_tax=false and total_tax=0; these Sessions were expired.
+The hosting-error delta8335ddd..9a5418f passed a complete targeted high-reasoning
+behavior review, including retry identity reset, throttling, non-JSON failures,
+duplicate clicks and abort handling. No findings or further code corrections.
 
 ## Accounting and operating-name review — 2026-10-25
 
