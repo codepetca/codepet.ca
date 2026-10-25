@@ -12,6 +12,10 @@ Read this file at the start of every AI-assisted coding session.
   Private `.env.local` is ignored and saved. `.env.production.local` is an
   ignored private live-preparation file; never print or commit either file.
   Account/API identity, active test product and portal match Codepet's dashboard.
+  Owner subsequently saved the existing live key privately. Read-only live API
+  verification confirms Codepet Inc., CA, charges/payouts enabled, and the correct
+  live product/default price/active portal. Activation false; no live Session,
+  customer, charge or subscription created during this verification.
 - Created education support test product ($10/month default) and hosted portal:
   invoice history, payment updates, cancellation at period end; no reason,
   coupon, plan or quantity changes. Test resources/evidence are in the private
@@ -61,9 +65,12 @@ Read this file at the start of every AI-assisted coding session.
   regressions. Local preview3220. No push/publication/PR for this integration.
   Minimal Stripe-specific privacy/support terms are prepared locally. Live
   product/portal prepared and saved support email/policy links configured.
-  Vercel production hosting verified through GitHub deployment status. Private
-  live key/configuration, deployment abuse controls and remaining hosted tests
-  still gate activation. Owner approval of tax treatment/name deferral recorded.
+  Vercel production hosting verified through GitHub deployment status. Live
+  private configuration verified; provider-use classification, production abuse
+  controls and remaining hosted tests still gate activation. Exact question
+  about own free-content/education support prepared for Stripe Support; not
+  sent, explicit owner messaging authorization pending. Account enablement is
+  not evidence of program-specific approval. Owner tax/name decisions recorded.
   See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
 
 ## Earlier merged work (historical status)
