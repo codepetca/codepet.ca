@@ -102,7 +102,7 @@ export function EducationFundingOptions({ checkoutReady = false, testMode = true
         </span>
       </label>
 
-      <fieldset disabled={submitting} className="space-y-3 border-t border-gray-200 pt-4 dark:border-gray-800">
+      <fieldset disabled={submitting} className="space-y-3">
         <legend className="sr-only">Supporter details</legend>
         {!checkoutReady && <div className="grid gap-3 sm:grid-cols-2">
           {[
