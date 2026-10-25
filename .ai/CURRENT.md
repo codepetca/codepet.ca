@@ -31,8 +31,10 @@ Read this file at the start of every AI-assisted coding session.
   Hosted CAD20 one-time passed decline then success, names omitted/email present,
   consentfalse propagated to PaymentIntent and verified thank-you. Test-clock
   initial/renewal payments, failure/recovery and cancellation/no next renewal
-  passed; simulation cleaned up. Chrome3DS simulator gave a blank frame, so that
-  completion remains unverified. Hosted CAD12.50 monthly passed with optional
+  passed; simulation cleaned up. Chrome3DS initially showed a blank frame;
+  a later in-app browser test completed the3DS2 challenge, authenticated and paid
+  CAD12.50 with no tax, and reached the verified thank-you page. Hosted monthly
+  CAD12.50 passed with optional
   names and consenttrue. Test portal invoice/payment controls and period-end
   cancellation verified; actual public email-login/receipt delivery outstanding.
 - Accounting/name source review completed Oct25 at owner's request. Preliminary
@@ -81,7 +83,8 @@ Read this file at the start of every AI-assisted coding session.
   1initial+1targeted wave,2fix batches (docs then hosting errors), under60minutes;
   no further code changes. Live WAF probe with invalid requests gave10x404 then
   429 before deployment, confirming enforcement without Stripe calls.
-  Provider-owned3DS and email delivery remain coverage limitations.
+  Public email portal login/duplicate-email selection and receipt delivery
+  remain coverage limitations; browser3DS completion is now verified.
   See `docs/EDUCATION-PAYMENTS.md` for configuration and acceptance evidence.
 
 ## Earlier merged work (historical status)

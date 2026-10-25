@@ -162,7 +162,7 @@ The secret is stored as a sensitive Vercel environment variable. No live key is
 available to preview builds. The canonical production origin is
 https://www.codepet.ca because the bare domain redirects there. The owner
 instructed continuing without a provider response; classification confirmation
-is not claimed. Provider-owned3DS/email flows retain the coverage gaps below.
+is not claimed. Provider-owned email flows retain the coverage gaps below.
 The original test-only code passed independent static review; live-mode changes
 require their own proportional review before activation.
 
@@ -182,8 +182,11 @@ were expired. One-time hosted checkout passed decline then success (CAD20),
 optional names omitted, required email, consentfalse propagated to PaymentIntent,
 and verified thank-you. Test-clock simulation passed initial/renewal payments,
 renewal decline, payment-method recovery and cancellation with no next renewal;
-the simulation was cleaned up. Browser3DS authentication displayed a blank Stripe
-challenge frame and remains unverified. Hosted custom monthly checkout passed
+the simulation was cleaned up. The initial Chrome3DS attempt displayed a blank
+Stripe frame. A subsequent in-app browser attempt completed the3DS2 challenge;
+Stripe confirmed authenticated/complete/paid in test mode at CAD12.50 with no
+tax, and the server-verified thank-you page displayed the owner's exact copy.
+Hosted custom monthly checkout passed
 at CAD12.50, with optional individual/business names and consenttrue retained.
 The test portal showed the paid invoice and payment-method controls; cancellation
 was scheduled for the current period end and verified against Stripe's API.
