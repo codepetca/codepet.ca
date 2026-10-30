@@ -9,10 +9,14 @@ function subscribe() {
   return () => {};
 }
 
-export function DashTitlePet() {
+function useFeaturedPet() {
   const searchParams = useSearchParams();
   const currentPet = useSyncExternalStore(subscribe, getCurrentPet, () => null);
-  const pet = getPetByName(searchParams.get("pet")) ?? currentPet;
+  return getPetByName(searchParams.get("pet")) ?? currentPet;
+}
+
+export function DashTitlePet() {
+  const pet = useFeaturedPet();
 
   if (!pet) return null;
 
@@ -24,4 +28,12 @@ export function DashTitlePet() {
       <FontAwesomeIcon icon={pet.icon} size="1x" />
     </span>
   );
+}
+
+export function DashTagline() {
+  const pet = useFeaturedPet();
+  if (!pet) return null;
+
+  const article = /^[aeiou]/i.test(pet.name) ? "an" : "a";
+  return <>Play. Code. Pet {article} {pet.name}.</>;
 }

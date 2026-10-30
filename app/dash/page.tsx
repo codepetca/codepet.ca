@@ -9,7 +9,7 @@ import {
   faRocket,
   type IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-import { DashTitlePet } from "@/components/dash-title-pet";
+import { DashTagline, DashTitlePet } from "@/components/dash-title-pet";
 
 interface Project {
   name: string;
@@ -64,7 +64,9 @@ export default function DashPage() {
             </span>
           </div>
           <p className="mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:text-base">
-            Build fun stuff together
+            <Suspense fallback={null}>
+              <DashTagline />
+            </Suspense>
           </p>
         </div>
 

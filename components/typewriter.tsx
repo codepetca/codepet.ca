@@ -10,9 +10,10 @@ interface TypewriterPhase {
 }
 
 function useTypewriter(pet: Pet) {
-  const article = /^[aeiou]/i.test(pet.name) ? "an" : "a";
   const phases: TypewriterPhase[] = [
-    { text: `Play. Code. Pet ${article} ${pet.name}.`, isBlue: true, erase: false },
+    { text: "Play", isBlue: false, erase: true },
+    { text: "Code", isBlue: false, erase: true },
+    { text: `Pet the ${pet.name}`, isBlue: true, erase: false },
   ];
 
   const [phaseIndex, setPhaseIndex] = useState(0);
