@@ -9,7 +9,7 @@ export default function PrivacyPage() {
   return (
     <article className="w-full max-w-2xl mx-auto px-6 py-8 self-start">
       <h1 className="text-2xl font-bold mb-2">Privacy Policy</h1>
-      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: October 25, 2026</p>
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">Last updated: October 30, 2026</p>
 
       <p className="mb-4">
         Codepet (&ldquo;us&rdquo;, &ldquo;we&rdquo;, or &ldquo;our&rdquo;)
@@ -59,6 +59,43 @@ export default function PrivacyPage() {
         <li>Log data (IP address, access times, pages viewed)</li>
         <li>Cookies and similar tracking technologies</li>
       </ul>
+
+      <h2 className="text-xl font-semibold mt-6 mb-3">Fret Hero</h2>
+      <p className="mb-4">
+        Fret Hero lets you practise songs and lessons without signing in.
+        Settings, imported files, playback positions and practice activity are
+        stored on your device to restore your sessions. Your device or its
+        backup service may also retain this information. Signing out does not
+        delete your on-device practice data.
+      </p>
+      <p className="mb-4">
+        If you use an optional account, we process your email address and
+        account identifier to authenticate you and provide connected content.
+        If you sign in with Google, account profile information such as your
+        name may also be provided. If you sign in with Apple and choose to hide
+        your email, Apple may provide a private relay address. Connected features
+        can store account-linked
+        library and lesson records. If you choose to share a lesson reflection,
+        we receive the reflection and the practice observations shown to you
+        for that submission.
+      </p>
+      <p className="mb-4">
+        Connected song searches are sent to our service. Service providers may
+        retain search terms and technical information, including request and
+        authentication logs, for operation and security. We use Supabase for
+        account and database services and Vercel for hosting. Their service
+        logs and backups have their own retention periods. Codepet does not use
+        Fret Hero data for advertising or share it with data brokers.
+      </p>
+      <p className="mb-4">
+        You can request account deletion in Fret Hero&apos;s account controls.
+        Deleting an account removes the account and its associated account data;
+        practice data on your device remains. Some accounts responsible for
+        shared catalog or audit records require support handling. Copies may
+        remain in service logs or backups for their applicable retention
+        periods. For deletion help or privacy questions, contact{" "}
+        <a href="mailto:info@codepet.ca" className="text-blue-600 dark:text-blue-400 hover:underline">info@codepet.ca</a>.
+      </p>
 
       <h2 className="text-xl font-semibold mt-6 mb-3">
         How We Use Your Information
@@ -181,10 +218,10 @@ export default function PrivacyPage() {
         If you have any questions about this Privacy Policy, please contact us
         at{" "}
         <a
-          href="mailto:dev.codepet@gmail.com"
+          href="mailto:info@codepet.ca"
           className="text-blue-600 dark:text-blue-400 hover:underline"
         >
-          dev.codepet@gmail.com
+          info@codepet.ca
         </a>
         .
       </p>
