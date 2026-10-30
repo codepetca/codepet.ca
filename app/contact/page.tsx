@@ -12,10 +12,10 @@ export default function ContactPage() {
         We&apos;d love to hear from you!
       </h1>
       <a
-        href="mailto:dev.codepet@gmail.com"
+        href="mailto:info@codepet.ca"
         className="text-blue-600 dark:text-blue-400 hover:underline"
       >
-        dev.codepet@gmail.com
+        info@codepet.ca
       </a>
     </div>
   );
