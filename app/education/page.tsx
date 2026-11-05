@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Codepet Education",
-  description: "Free tools and resources for students and educators. Meet Zero, a simple kit for building Java apps.",
+  description: "Empowering learners to explore, create, and grow.",
   alternates: { canonical: "/education" },
 };
 
@@ -22,7 +22,7 @@ export default function EducationPage() {
       </nav>
 
       <h1 className="text-3xl font-semibold tracking-tight text-gray-950 dark:text-white sm:text-4xl">Codepet Education</h1>
-      <p className="mt-4 text-lg leading-7 text-gray-600 dark:text-gray-300">Free tools and resources for students and educators.</p>
+      <p className="mt-4 text-lg leading-7 text-gray-600 dark:text-gray-300">Empowering learners to explore, create, and grow.</p>
       <div className="flex flex-wrap items-center gap-x-6">
         <EducationSupportButton />
         <Link href="/education/campaign-preview" className="mt-6 inline-flex min-h-11 items-center text-sm font-medium text-emerald-700 hover:underline dark:text-emerald-400">Campaign preview →</Link>

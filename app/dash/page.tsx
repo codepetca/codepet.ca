@@ -24,7 +24,7 @@ const projects: Project[] = [
     name: "Codepet Education",
     domain: "codepet.ca/education",
     href: "/education",
-    description: "Free tools and resources for students and educators.",
+    description: "Empowering learners to explore, create, and grow.",
     icon: faGraduationCap,
   },
   {
